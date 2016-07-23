@@ -22,7 +22,11 @@
   when: mongodb_orm == 'mongomapper'
 
 - name: Set locale
-  shell: "export LC_ALL=C"
+  command: "export LC_ALL=C"
+  become: yes
+  become_user: vagrant
 
 - name: Restore databases
-  shell: "mongorestore"
+  command: chdir={{ app_path }}/railsbox/mongodump mongorestore
+  become: yes
+  become_user: vagrant

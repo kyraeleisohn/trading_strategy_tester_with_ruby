@@ -58,9 +58,11 @@ class ClosedTradeSummary
   private
 
   def get_profit closed_trade
-    price_difference = closed_trade.closing_state.ask_price.to_f - closed_trade.opening_state.ask_price.to_f
+    if closed_trade.is_buy
+      return closed_trade.closing_state.bid_price.to_f - closed_trade.opening_state.ask_price.to_f
+    end
 
-    closed_trade.is_buy ? price_difference : (-1 * price_difference)
+    closed_trade.closing_state.ask_price.to_f - closed_trade.opening_state.bid_price.to_f
   end
 
   def add_profit profit
