@@ -1,0 +1,40 @@
+<h1>Trade list</h1>
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>Trade type</th>
+    <th>Opening date</th>
+    <th>Closing date</th>
+    <th>Opening price</th>
+    <th>Closing price</th>
+    <th>Opening volume</th>
+    <th>Closing volume</th>
+  </tr>
+  <% @get_all_trade[:data].each do |trade| %>
+      <tr>
+        <td><%= trade[:type] %></td>
+        <td><%= trade[:opening_state_date_time] %></td>
+        <td><%= trade[:closing_state_date_time] %></td>
+        <td><%= trade[:opening_state_ask_price] %></td>
+        <td><%= trade[:closing_state_ask_price] %></td>
+        <td><%= trade[:opening_state_ask_volume] %></td>
+        <td><%= trade[:closing_state_ask_volume] %></td>
+      </tr>
+  <% end %>
+</table>
+<div class="pagination pagination-centered">
+  <ul>
+    <li>
+      <a href="<%= @get_all_trade[:prev_page_url] %>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% @get_all_trade[:pages].each do |page| %>
+    <li><a href="<%=page[:url]%>"><%=page[:page_number]%></a></li>
+    <% end %>
+    <li>
+      <a href="<%= @get_all_trade[:next_page_url] %>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</div>

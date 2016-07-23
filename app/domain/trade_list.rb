@@ -1,0 +1,3 @@
+
+class TradeList < Array
+end

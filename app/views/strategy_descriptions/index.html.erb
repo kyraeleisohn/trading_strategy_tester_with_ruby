@@ -1,0 +1,32 @@
+<h1>Strategy Descriptions</h1>
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>Trade list</th>
+    <th>Name</th>
+    <th>Parameter list</th>
+  </tr>
+  <% @get_all_description[:data].each do |description| %>
+      <tr>
+        <td><%= 'A' %></td>
+        <td><%= description[:name] %></td>
+        <td><%= description[:parameter_list] %></td>
+      </tr>
+  <% end %>
+</table>
+<div class="pagination pagination-centered">
+  <ul>
+    <li>
+      <a href="<%= @get_all_description[:prev_page_url] %>" aria-label="Previous">
+        <span aria-hidden="true">&laquo;</span>
+      </a>
+    </li>
+    <% @get_all_description[:pages].each do |page| %>
+    <li><a href="<%=page[:url]%>"><%=page[:page_number]%></a></li>
+    <% end %>
+    <li>
+      <a href="<%= @get_all_description[:next_page_url] %>" aria-label="Next">
+        <span aria-hidden="true">&raquo;</span>
+      </a>
+    </li>
+  </ul>
+</div>

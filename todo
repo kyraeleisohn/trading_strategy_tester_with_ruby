@@ -1,0 +1,5 @@
+Merge trade functionality
+* create request
+* validators
+* mapper from domain at create
+* one page application

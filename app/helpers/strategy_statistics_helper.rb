@@ -1,0 +1,2 @@
+module StrategyStatisticsHelper
+end

@@ -1,0 +1,22 @@
+
+class StrategyParameterListBuilder
+  def initialize
+    @parameter_list_list = generate_parameter_list_list
+  end
+
+  def each
+    @parameter_list_list.each do |parameter_list|
+      parameter_list = {:random_factor => parameter_list}
+      yield parameter_list
+    end
+  end
+
+  private
+  def generate_parameter_list_list
+    (10..100)
+  end
+
+  def generate_id
+    SecureRandom.hex(32)
+  end
+end

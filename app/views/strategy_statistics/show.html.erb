@@ -1,0 +1,63 @@
+<h1>Strategy Statistic</h1>
+<table class="table table-hover table-condensed">
+  <tr>
+    <th>Trades</th>
+    <td><a href="<%= @strategy_result[:trade_list_url] %>">View</a></td>
+  </tr>
+  <tr>
+    <th>Profit</th>
+    <td><%= @strategy_result[:profit] %></td>
+  </tr>
+  <tr>
+    <th>Profitability</th>
+    <td><%= @strategy_result[:profitability] %></td>
+  </tr>
+  <tr>
+    <th>Trade count</th>
+    <td><%= @strategy_result[:trade_count] %></td>
+  </tr>
+  <tr>
+    <th>Average loss</th>
+    <td><%= @strategy_result[:average_loss] %></td>
+  </tr>
+  <tr>
+    <th>Average win</th>
+    <td><%= @strategy_result[:average_win] %></td>
+  </tr>
+  <tr>
+    <th>Maximum loss</th>
+    <td><%= @strategy_result[:maximum_loss] %></td>
+  </tr>
+  <tr>
+    <th>Maximum win</th>
+    <td><%= @strategy_result[:maximum_win] %></td>
+  </tr>
+  <tr>
+    <th>Buy percentage</th>
+    <td><%= @strategy_result[:buy_percentage] %></td>
+  </tr>
+  <tr>
+    <th>Buy win count</th>
+    <td><%= @strategy_result[:buy_win_count] %></td>
+  </tr>
+  <tr>
+    <th>Sell win count</th>
+    <td><%= @strategy_result[:sell_win_count] %></td>
+  </tr>
+  <tr>
+    <th>Average trade length</th>
+    <td><%= @strategy_result[:average_trade_length] %></td>
+  </tr>
+  <tr>
+    <th>OM count</th>
+    <td><%= @strategy_result[:one_minute_trade_count] %></td>
+  </tr>
+  <tr>
+    <th>OM profit</th>
+    <td><%= @strategy_result[:one_minute_trade_profit] %></td>
+  </tr>
+  <tr>
+    <th>OM win percentage</th>
+    <td><%= @strategy_result[:one_minute_trade_win_percentage] %></td>
+  </tr>
+</table>
