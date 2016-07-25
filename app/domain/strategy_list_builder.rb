@@ -7,7 +7,7 @@ class StrategyListBuilder
   def get
     strategy_list = Array.new
     @parameter_list_builder.each do |strategy_parameter_list|
-      strategy_list.push Strategy.new(@trade_handler_builder.get, strategy_parameter_list)
+      strategy_list.push StrategyFormula.new(@trade_handler_builder.get, strategy_parameter_list)
     end
 
     strategy_list

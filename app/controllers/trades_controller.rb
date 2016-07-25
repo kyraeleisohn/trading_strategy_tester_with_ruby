@@ -8,6 +8,11 @@ class TradesController < ApplicationController
       )
     )
     @get_all_trade = model.get(params[:strategy_id], params[:page].to_i)
+
+    respond_to do |format|
+      format.json { render json: @get_all_trade }
+      format.html
+    end
   end
 
   def show

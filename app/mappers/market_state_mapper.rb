@@ -1,4 +1,4 @@
-class MarketStateMapper
+class MarketStateMapper < Mapper
   def from_table table
     MarketState.new(
       DateTime.parse(table.date_time),

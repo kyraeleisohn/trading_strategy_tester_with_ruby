@@ -3,3 +3,5 @@ Merge trade functionality
 * validators
 * mapper from domain at create
 * one page application
+* refactor models
+*

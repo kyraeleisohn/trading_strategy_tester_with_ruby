@@ -1,4 +1,4 @@
-class StrategyDescriptionMapper
+class StrategyDescriptionMapper < Mapper
   def initialize(repository)
     @repository = repository
   end

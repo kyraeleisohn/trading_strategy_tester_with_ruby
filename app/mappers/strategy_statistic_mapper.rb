@@ -1,4 +1,4 @@
-class StrategyStatisticMapper
+class StrategyStatisticMapper < Mapper
   def initialize(repository)
     @repository = repository
   end

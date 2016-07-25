@@ -1,4 +1,4 @@
-class TradeMapper
+class TradeMapper < Mapper
   def initialize(repository, market_state_mapper, trade_factory)
     @repository = repository
     @market_state_mapper = market_state_mapper

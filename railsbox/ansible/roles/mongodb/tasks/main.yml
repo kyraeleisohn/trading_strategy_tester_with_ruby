@@ -22,7 +22,7 @@
   when: mongodb_orm == 'mongomapper'
 
 - name: Set locale
-  command: "export LC_ALL=C"
+  shell: "export LC_ALL=C"
   become: yes
   become_user: vagrant
 

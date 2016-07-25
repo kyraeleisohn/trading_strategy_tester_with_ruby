@@ -2,12 +2,18 @@
 <html>
 <head>
   <title>TradingStrategyResultAnalytics</title>
-  <%= javascript_include_tag "jquery-2.2.2" %>
-  <%= javascript_include_tag "bootstrap.min" %>
+  <meta charset="utf-8" />
+  <%= javascript_include_tag "lib/bootstrap/bootstrap.min" %>
+  <%= javascript_include_tag "lib/jquery/2.2.2/jquery" %>
+  <%= javascript_include_tag "lib/react/15.2.1/react" %>
+  <%= javascript_include_tag "lib/react/15.2.1/react-dom" %>
+  <%= javascript_include_tag "lib/babel-core/5.8.34/browser.min" %>
+  <%= javascript_include_tag "lib/remarkable/1.6.2/remarkable.min" %>
   <%= stylesheet_link_tag "bootstrap.min.css", media: "screen" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="content"></div>
 
 <%= yield %>
 
