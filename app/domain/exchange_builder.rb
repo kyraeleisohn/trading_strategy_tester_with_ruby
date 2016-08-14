@@ -7,6 +7,25 @@ class ExchangeBuilder
 
     strategy_description_repository = StrategyDescriptionRepository.new
     strategy_description_mapper = StrategyDescriptionMapper.new strategy_description_repository
-    Exchange.new(market_feed, strategy_description_mapper)
+
+    exchange_status = ExchangeStatus.new(
+      SecureRandom.uuid
+    )
+
+    exchange_status_repository = ExchangeStatusRepository.new
+    exchange_status_search_request_mapper = ExchangeStatusSearchRequestMapper.new
+    exchange_status_mapper = ExchangeStatusMapper.new(
+        exchange_status_repository,
+        exchange_status_search_request_mapper
+    )
+    timer = Timer.new
+
+    Exchange.new(
+        market_feed,
+        strategy_description_mapper,
+        exchange_status,
+        exchange_status_mapper,
+        timer
+    )
   end
 end

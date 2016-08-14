@@ -6,4 +6,8 @@ class MarketFeed
   def each
     @market_feed_mapper.each {|state| yield state}
   end
+
+  def count
+    @market_feed_mapper.count
+  end
 end
