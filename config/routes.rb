@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :strategy_statistics
   resources :strategy_descriptions
+  resources :exchange_statuses
 
   resources :strategies do
     resources :trades

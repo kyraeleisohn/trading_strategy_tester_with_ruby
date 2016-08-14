@@ -12,12 +12,9 @@ class ExchangeBuilder
       SecureRandom.uuid
     )
 
-    exchange_status_repository = ExchangeStatusRepository.new
-    exchange_status_search_request_mapper = ExchangeStatusSearchRequestMapper.new
-    exchange_status_mapper = ExchangeStatusMapper.new(
-        exchange_status_repository,
-        exchange_status_search_request_mapper
-    )
+    exchange_status_mapper_builder = ExchangeStatusMapperBuilder.new
+    exchange_status_mapper = exchange_status_mapper_builder.get
+
     timer = Timer.new
 
     Exchange.new(
