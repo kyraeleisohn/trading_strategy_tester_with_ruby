@@ -3,8 +3,8 @@ class ExchangeStatus
   STATUS_PROCESSING = 'processing'
   STATUS_DONE = 'done'
 
-  attr_accessor :cycle_maximum
-  attr_reader :id, :finished_cycles, :status, :time_spent
+  attr_accessor :cycle_maximum, :time_spent
+  attr_reader :id, :finished_cycles, :status
 
   def initialize(id, cycle_maximum = 0, finished_cycles = 0, time_spent = 0, status = STATUS_CREATED)
     @id = id

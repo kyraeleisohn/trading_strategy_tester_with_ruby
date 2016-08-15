@@ -4,6 +4,6 @@ class Timer
   end
 
   def time_spent
-    Time.now - @start_time
+    Time.now.to_i - @start_time.to_i
   end
 end

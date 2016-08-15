@@ -2,9 +2,7 @@ class ExchangeStatusesController < ApplicationController
   def index
     model = GetAllExchangeStatusModel.new(mapper)
 
-    @exchange_status_list = model.get
-
-    #params[:page].to_i
+    @exchange_status_list = model.get(params[:q])
 
     render json: @exchange_status_list
   end

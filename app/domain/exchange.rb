@@ -50,6 +50,7 @@ class Exchange
 
   def finish_cycle
     @status.finish_cycle
+    @status.time_spent = @timer.time_spent
     log
   end
 

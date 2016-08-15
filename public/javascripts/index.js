@@ -357,9 +357,33 @@ return (
 
 var Exchange = React.createClass(
     {
+        formatTimeInterval: function (seconds_count) {
+            var hours   = Math.floor(seconds_count / 3600);
+            var minutes = Math.floor((seconds_count - (hours * 3600)) / 60);
+            var seconds = seconds_count - (hours * 3600) - (minutes * 60);
+            var result = '';
+
+            if (hours)
+            {
+                result = result + hours + ' hour(s) '
+            }
+            if (minutes)
+            {
+                result = result + minutes + ' minute(s) '
+            }
+            if (seconds)
+            {
+                result = result + seconds + ' second(s) '
+            }
+
+            return result;
+        },
+
         render: function() {
             var exchange = this.props.data;
             var percentage = Math.floor((exchange.finished_cycles / exchange.cycle_maximum) * 100);
+            var time_spent = this.formatTimeInterval(exchange.time_spent);
+            var average_cycle_time = this.formatTimeInterval(exchange.time_spent / exchange.finished_cycles);
             var divStyle = {
                 width: percentage + '%',
             }
@@ -367,7 +391,8 @@ var Exchange = React.createClass(
             return (
                 <tr>
                     <th>{exchange.status}</th>
-                    <th>{exchange.time_spent}</th>
+                    <th>{time_spent}</th>
+                    <th>{average_cycle_time}</th>
                     <th>
                         <div className="progress">
                             <div className="progress-bar progress-bar-success progress-bar-striped" role="progressbar" aria-valuenow={exchange.finished_cycles} aria-valuemin="0" aria-valuemax={exchange.cycle_maximum} style={divStyle}>
@@ -421,6 +446,11 @@ var ExchangeList = React.createClass(
                 }
             );
 
+            if (exchangeList.length == 0)
+            {
+                return null;
+            }
+
             return (
                 <div className="exchangeList">
                     <div className="panel panel-default">
@@ -433,6 +463,7 @@ var ExchangeList = React.createClass(
                                 <tr>
                                     <th>Status</th>
                                     <th>Time</th>
+                                    <th>Average cycle time</th>
                                     <th>Progress</th>
                                 </tr>
                             </thead>
