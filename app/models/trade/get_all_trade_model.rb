@@ -1,11 +1,11 @@
 class GetAllTradeModel < TradeModel
-  ITEM_PER_PAGE = 15
-  def get(strategy_id, page = 1)
+  def get(strategy_id, page = 1, item_per_page = 15)
+    item_per_page = item_per_page == 0 ? 15 : item_per_page
     total = @mapper.count strategy_id
-    last_page = (total / ITEM_PER_PAGE).ceil
+    last_page = (total / item_per_page).ceil
     {
       :total         => total,
-      :per_page      => ITEM_PER_PAGE,
+      :per_page      => item_per_page,
       :current_page  => page,
       :last_page     => last_page,
       :next_page_url => get_next_page_url(strategy_id, page, total),
@@ -13,7 +13,7 @@ class GetAllTradeModel < TradeModel
       :from          => (page - 1) * total,
       :to            => page * total,
       :pages         => get_pager_url_list(strategy_id, page, last_page),
-      :data          => @mapper.paginate(strategy_id, page, ITEM_PER_PAGE).collect {|trade| get_trade_as_array trade}
+      :data          => @mapper.paginate(strategy_id, page, item_per_page).collect {|trade| get_trade_as_array trade}
     }
   end
 

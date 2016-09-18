@@ -5,9 +5,6 @@ class ExchangeBuilder
     market_feed_mapper = MarketFeedMapper.new market_feed_repository
     market_feed = MarketFeed.new market_feed_mapper
 
-    strategy_description_repository = StrategyDescriptionRepository.new
-    strategy_description_mapper = StrategyDescriptionMapper.new strategy_description_repository
-
     exchange_status = ExchangeStatus.new(
       SecureRandom.uuid
     )
@@ -17,12 +14,15 @@ class ExchangeBuilder
 
     timer = Timer.new
 
+    strategy_list_builder = StrategyListBuilder.new
+    strategy_list = strategy_list_builder.get market_feed.count
+
     Exchange.new(
-        market_feed,
-        strategy_description_mapper,
-        exchange_status,
-        exchange_status_mapper,
-        timer
+      market_feed,
+      exchange_status,
+      exchange_status_mapper,
+      timer,
+      strategy_list
     )
   end
 end

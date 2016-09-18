@@ -36,22 +36,22 @@ var Description = React.createClass(
             return (
                 <div className="description col-md-6">
                 <h2>Strategy Description</h2>
-            <table className="table table-hover table-condensed">
-                <tbody>
-                <tr>
-                <th>Name</th>
-                <td>{description.name}</td>
-        </tr>
-        <tr>
-        <th>Parameter list</th>
-    <td>{parameterList}</td>
-    </tr>
-    </tbody>
-    </table>
-    </div>
-);
-}
-}
+                    <table className="table table-hover table-condensed">
+                        <tbody>
+                            <tr>
+                                <th>Name</th>
+                                <td>{description.name}</td>
+                            </tr>
+                            <tr>
+                                <th>Parameter list</th>
+                                <td>{parameterList}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            );
+        }
+    }
 );
 var Statistic = React.createClass(
     {
@@ -291,18 +291,19 @@ return (
 var Strategy = React.createClass(
     {
         render: function() {
-    return (
-        <div className="strategy row-fluid">
-        <div className="col-md-12">
-            <h1>Strategy</h1>
-                <Description dataId={this.props.dataId} url="/strategy_descriptions" pollInterval="2000"/>
-                <Statistic dataId={this.props.dataId} url="/strategy_statistics" pollInterval="2000"/>
-                <TradeList dataId={this.props.dataId} url="/strategies" pollInterval="2000"/>
-        </div>
-    </div>
-);
-}
-}
+            return (
+                <div className="strategy row-fluid">
+                    <div className="col-md-12">
+                        <h1>Strategy</h1>
+                        <Description dataId={this.props.dataId} url="/strategy_descriptions" pollInterval="2000"/>
+                        <Chart dataId={this.props.dataId} url="/strategy_charts" pollInterval="2000"/>
+                        <Statistic dataId={this.props.dataId} url="/strategy_statistics" pollInterval="2000"/>
+                        <TradeList dataId={this.props.dataId} url="/strategies" pollInterval="2000"/>
+                    </div>
+                </div>
+            );
+        }
+    }
 );
 var StrategyList = React.createClass(
     {

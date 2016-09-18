@@ -15,4 +15,12 @@ class Trade
   def is_buy
     false
   end
+
+  def profit(closing_state)
+    0
+  end
+
+  def final_profit
+    profit closing_state
+  end
 end

@@ -26,6 +26,19 @@ class TradeHandler
     @statistic_mapper.save statistic
   end
 
+  def current_value(market_state)
+    profit = 0
+    @open_trade_list.each do |trade|
+      profit += trade.profit market_state
+    end
+
+    @closed_trade_list.each do |trade|
+      profit += trade.final_profit
+    end
+
+    profit
+  end
+
   private
   def statistic
     @statistic_generator.get @closed_trade_list

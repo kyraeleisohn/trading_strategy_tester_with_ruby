@@ -1,13 +1,11 @@
 class StrategyListBuilder
-  def initialize(trade_handler_builder, parameter_list_builder)
-    @trade_handler_builder = trade_handler_builder
-    @parameter_list_builder = parameter_list_builder
-  end
+  def get(tick_count)
+    parameter_list_builder = StrategyParameterListBuilder.new
+    strategy_list = StrategyList.new
+    strategy_builder = StrategyFormulaBuilder.new
 
-  def get
-    strategy_list = Array.new
-    @parameter_list_builder.each do |strategy_parameter_list|
-      strategy_list.push StrategyFormula.new(@trade_handler_builder.get, strategy_parameter_list)
+    parameter_list_builder.each do |strategy_parameter_list|
+      strategy_list.push(strategy_builder.get(tick_count, strategy_parameter_list))
     end
 
     strategy_list

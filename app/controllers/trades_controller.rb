@@ -7,7 +7,7 @@ class TradesController < ApplicationController
         TradeFactory.new
       )
     )
-    @get_all_trade = model.get(params[:strategy_id], params[:page].to_i)
+    @get_all_trade = model.get(params[:strategy_id], params[:page].to_i, params[:item_per_page].to_i)
 
     respond_to do |format|
       format.json { render json: @get_all_trade }

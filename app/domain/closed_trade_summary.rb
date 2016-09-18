@@ -40,7 +40,7 @@ class ClosedTradeSummary
 
   def add closed_trade
     @strategy_id = closed_trade.strategy_id
-    profit = get_profit closed_trade
+    profit = closed_trade.final_profit
 
     add_profit profit
     add_profitability profit

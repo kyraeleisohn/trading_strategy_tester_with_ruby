@@ -29,5 +29,6 @@ module TradingStrategyResultAnalytics
     config.autoload_paths << "#{Rails.root}/app/models/strategy_statistic"
     config.autoload_paths << "#{Rails.root}/app/models/strategy_description"
     config.autoload_paths << "#{Rails.root}/app/models/exchange_status"
+    config.autoload_paths << "#{Rails.root}/app/models/chart"
   end
 end
