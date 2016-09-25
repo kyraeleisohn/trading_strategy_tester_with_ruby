@@ -31,7 +31,7 @@ class Statistic extends React.Component {
 
     componentDidMount() {
         this.loadDataFromServer();
-        setInterval(this.loadDataFromServer, this.props.pollInterval);
+        setInterval(this.loadDataFromServer.bind(this), this.props.pollInterval);
     }
 
     render() {

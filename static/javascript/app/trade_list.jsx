@@ -33,7 +33,7 @@ class TradeList extends React.Component{
 
     componentDidMount() {
         this.loadDataFromServer();
-        setInterval(this.loadDataFromServer, this.props.pollInterval);
+        setInterval(this.loadDataFromServer.bind(this), this.props.pollInterval);
     }
 
     render() {
@@ -44,12 +44,6 @@ class TradeList extends React.Component{
                 );
             }
         );
-
-        var pager = function() {
-            return (
-                <Trade data={this.state.data} />
-            );
-        }
 
         return (
             <div className="tradeList col-md-12">
@@ -68,7 +62,6 @@ class TradeList extends React.Component{
                     </thead>
                     <tbody>{tradeList}</tbody>
                 </table>
-                {pager}
             </div>
         );
     }
