@@ -8,6 +8,7 @@ class Description extends React.Component {
             }
         };
     }
+
     loadDataFromServer() {
         $.ajax(
             {
