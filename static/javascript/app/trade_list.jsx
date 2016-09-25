@@ -1,4 +1,5 @@
 import React from 'react';
+import Trade from './trade.jsx';
 
 class TradeList extends React.Component{
     constructor(props) {

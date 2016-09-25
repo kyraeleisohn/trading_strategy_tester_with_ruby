@@ -1,26 +1,8 @@
-import Description from './description.jsx';
-import Statistic from './statistic.jsx';
-import Trade from './trade.jsx';
 import Page from './page.jsx';
 import Pager from './pager.jsx';
-import TradeList from './trade_list.jsx';
 
-var Strategy = React.createClass(
-    {
-        render: function() {
-    return (
-        <div className="strategy row-fluid">
-        <div className="col-md-12">
-        <h1>Strategy</h1>
-        <Description dataId={this.props.dataId} url="/strategy_descriptions" pollInterval="2000"/>
-    <Statistic dataId={this.props.dataId} url="/strategy_statistics" pollInterval="2000"/>
-    <TradeList dataId={this.props.dataId} url="/strategies" pollInterval="2000"/>
-    </div>
-    </div>
-);
-}
-}
-);
+import Strategy from './strategy.jsx';
+
 var StrategyList = React.createClass(
     {
         loadDataFromServer: function() {
