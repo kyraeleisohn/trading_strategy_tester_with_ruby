@@ -16,4 +16,5 @@
 !/log/.keep
 /tmp
 /static/javascript/node_modules
+/app/assets
 .idea
