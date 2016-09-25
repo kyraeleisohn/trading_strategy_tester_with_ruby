@@ -2,40 +2,8 @@ import Description from './description.jsx';
 import Statistic from './statistic.jsx';
 import Trade from './trade.jsx';
 import Page from './page.jsx';
+import Pager from './pager.jsx';
 
-var Pager = React.createClass(
-    {
-        render: function() {
-            pager = this.props.data
-
-            var pages = pager.pages.map(
-                function(trade) {
-                    return (
-                        <Page data={trade} />
-                    );
-                }
-            );
-
-            return (
-                <div className="pagination pagination-centered">
-                <ul>
-                <li>
-                <a href="{pager.prev_page_url}" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-            </li>
-            {pages}
-            <li>
-            <a href="{pager.next_page_url}" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-            </li>
-            </ul>
-            </div>
-            );
-        }
-    }
-);
 var TradeList = React.createClass(
     {
         loadDataFromServer: function() {
