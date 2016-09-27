@@ -21,10 +21,13 @@ class ChartMapper < Mapper
   end
 
   def from_table(table)
-    Chart.new(
-      table.id,
+    chart = Chart.new(
       table.mod,
       table.data
     )
+
+    chart.assign table.id
+
+    chart
   end
 end

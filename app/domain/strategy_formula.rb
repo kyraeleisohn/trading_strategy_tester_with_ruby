@@ -12,6 +12,7 @@ class StrategyFormula
     @random_factor = strategy_parameter_list[:random_factor]
     @id = generate_id
     @chart = chart
+    @chart.assign @id
     @chart_mapper = chart_mapper
 
     strategy_description_mapper.store description

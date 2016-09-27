@@ -1,8 +1,7 @@
 class Chart
   attr_reader :id, :data, :mod
 
-  def initialize(id, mod, data)
-    @id = id
+  def initialize(mod, data)
     @count = 0
     @mod = mod
     @data = data
@@ -19,5 +18,9 @@ class Chart
     end
 
     @count = @count + 1
+  end
+
+  def assign(id)
+    @id = id
   end
 end

@@ -9,7 +9,6 @@ class StrategyFormulaBuilder
     strategy_description_mapper = StrategyDescriptionMapper.new strategy_description_repository
 
     chart = Chart.new(
-      SecureRandom.uuid,
       get_chart_mod(tick_count),
       []
     )
