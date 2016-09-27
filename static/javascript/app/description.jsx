@@ -39,7 +39,7 @@ class Description extends React.Component {
         var parameterList = JSON.stringify(description.parameter_list)
 
         return (
-            <div className="description col-md-6">
+            <div className="description col-md-12">
                 <h2>Strategy Description</h2>
                 <table className="table table-hover table-condensed">
                     <tbody>
