@@ -1,0 +1,18 @@
+mongodb:
+  image: mongo
+  ports:
+    - "27017:27017"
+
+mongo-seed:
+  build: ./environment/services/mongo-seed
+  links:
+    - mongodb
+web:
+  build: ./environment/services/web
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/trading_strategy_result_analytics
+  ports:
+    - "3000:3000"
+  links:
+    - mongodb

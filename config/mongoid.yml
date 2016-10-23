@@ -1,11 +1,9 @@
-# Ansible managed: /Users/kyraelesiohn/RubymineProjects/trading/trading_strategy_result_analytics/railsbox/ansible/roles/mongodb/templates/mongoid.yml.j2 modified on 2016-04-03 18:48:16 by kyraelesiohn on pc132.local
-
 development:
   clients:
     default:
-      database: trading_strategy_statistics
+      database: test_database
       hosts:
-        - localhost:27017
+        - mongodb:27017
 
 test:
   sessions:
