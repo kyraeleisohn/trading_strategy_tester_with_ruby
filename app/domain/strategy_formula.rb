@@ -28,8 +28,9 @@ class StrategyFormula
       @trade_handler.close_trade(open_trades.sample, market_state)
     end
 
-    @chart.add(market_state.date_time, @trade_handler.current_value(market_state))
-    @chart_mapper.store @chart
+    if @chart.add(market_state.date_time, @trade_handler.current_value(market_state)) then
+      @chart_mapper.store @chart
+    end
   end
 
   private

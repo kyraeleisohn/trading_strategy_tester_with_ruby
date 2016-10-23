@@ -13,7 +13,7 @@ class StrategyParameterListBuilder
 
   private
   def generate_parameter_list_list
-    (10..100)
+    (99..100)
   end
 
   def generate_id

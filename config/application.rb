@@ -24,6 +24,7 @@ module TradingStrategyResultAnalytics
     config.active_record.raise_in_transactional_callbacks = true
 
     config.mongoid.logger = Logger.new("#{Rails.root}/log/mongoid.log")
+    Mongo::Logger.logger.level = ::Logger::FATAL
 
     config.autoload_paths << "#{Rails.root}/app/models/trade"
     config.autoload_paths << "#{Rails.root}/app/models/strategy_statistic"

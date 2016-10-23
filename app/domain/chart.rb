@@ -8,6 +8,7 @@ class Chart
   end
 
   def add(datetime, value)
+    changed = false
     if @count == 0 || @count % @mod == 0 then
       @data.push(
         {
@@ -15,9 +16,13 @@ class Chart
           'value' => value
         }
       )
+
+      changed = true
     end
 
     @count = @count + 1
+
+    changed
   end
 
   def assign(id)

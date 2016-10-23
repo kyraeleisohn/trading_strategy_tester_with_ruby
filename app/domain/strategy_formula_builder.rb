@@ -1,5 +1,5 @@
 class StrategyFormulaBuilder
-  CHART_RESOLUTION = 500
+  CHART_RESOLUTION = 100
 
   def get(tick_count, strategy_parameter_list)
     trade_handler_builder = TradeHandlerBuilder.new

@@ -1,5 +1,5 @@
 class TradeFactory
-  def get(strategy_id, id, type, opening_state, closing_state)
+  def get(id, strategy_id, type, opening_state, closing_state)
     case type
       when "buy"
         trade = BuyTrade.new(strategy_id, id, opening_state)
