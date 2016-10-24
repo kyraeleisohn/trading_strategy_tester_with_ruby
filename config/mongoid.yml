@@ -4,6 +4,8 @@ development:
       database: test_database
       hosts:
         - mongodb:27017
+      options:
+        raise_not_found_error: false
 
 test:
   sessions:

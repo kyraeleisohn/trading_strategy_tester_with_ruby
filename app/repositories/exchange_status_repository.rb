@@ -1,5 +1,5 @@
 class ExchangeStatusRepository
-  def find filter_list
+  def find(filter_list)
     ExchangeStatusTable.where filter_list
   end
 

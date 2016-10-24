@@ -19,6 +19,11 @@ class TradeQueueMapper < Mapper
     @repository.store(to_table(trade))
   end
 
+  def remove(trade)
+    item = @repository.find_by_id trade.id
+    item.delete
+  end
+
   private
   def to_table(trade)
     opening_state = @market_state_mapper.to_table(trade.opening_state)
