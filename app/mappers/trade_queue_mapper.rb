@@ -20,8 +20,7 @@ class TradeQueueMapper < Mapper
   end
 
   def remove(trade)
-    item = @repository.find_by_id trade.id
-    item.delete
+    @repository.delete trade.id
   end
 
   private

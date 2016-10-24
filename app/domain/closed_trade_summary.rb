@@ -79,14 +79,6 @@ class ClosedTradeSummary
 
   private
 
-  def get_profit(closed_trade)
-    if closed_trade.is_buy
-      return closed_trade.closing_state.bid_price.to_f - closed_trade.opening_state.ask_price.to_f
-    end
-
-    closed_trade.closing_state.ask_price.to_f - closed_trade.opening_state.bid_price.to_f
-  end
-
   def add_profit(profit)
     @profit += profit
   end

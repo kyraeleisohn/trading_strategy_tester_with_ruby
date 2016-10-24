@@ -17,10 +17,14 @@ class Trade
   end
 
   def profit(closing_state)
-    0
+    if is_buy
+      return closing_state.bid_price.to_f - @opening_state.ask_price.to_f
+    end
+
+    closing_state.ask_price.to_f - @opening_state.bid_price.to_f
   end
 
   def final_profit
-    profit closing_state
+    profit @closing_state
   end
 end

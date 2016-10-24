@@ -1,15 +1,20 @@
 class TradeQueueProcessor
-  def initialize(queue_mapper, strategy_summary_mapper)
+  def initialize(queue_mapper, trade_mapper, strategy_summary_mapper)
     @queue_mapper = queue_mapper
+    @trade_mapper = trade_mapper
     @strategy_summary_mapper = strategy_summary_mapper
   end
 
   def run
     while true do
-      @queue_mapper.paginate(0, 10).each do |queue_item|
+      queue_item_list = @queue_mapper.paginate(0, 10)
+      queue_item_list.each do |queue_item|
         process queue_item
       end
-      sleep 1
+
+      if queue_item_list.empty?
+        sleep 1
+      end
     end
   end
 
@@ -18,6 +23,7 @@ class TradeQueueProcessor
     strategy_summary = get_summary queue_item.strategy_id
     strategy_summary.add queue_item
     @strategy_summary_mapper.save strategy_summary
+    @trade_mapper.store queue_item
     @queue_mapper.remove queue_item
   end
 

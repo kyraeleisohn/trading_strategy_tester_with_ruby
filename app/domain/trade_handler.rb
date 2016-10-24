@@ -1,13 +1,11 @@
 class TradeHandler
-  attr_reader :open_trade_list, :closed_trade_list
+  attr_reader :open_trade_list
 
-  def initialize(trade_id_generator, open_trade_list, closed_trade_list, statistic_generator, statistic_mapper, trade_mapper)
+  def initialize(trade_id_generator, open_trade_list, trade_mapper)
     @trade_id_generator = trade_id_generator
     @open_trade_list = open_trade_list
-    @closed_trade_list = closed_trade_list
-    @statistic_generator = statistic_generator
-    @statistic_mapper = statistic_mapper
     @trade_mapper = trade_mapper
+    @closed_value = 0;
   end
 
   def open_buy_trade(strategy_id, opening_state)
@@ -21,9 +19,8 @@ class TradeHandler
   def close_trade(trade, closing_state)
     @open_trade_list.delete trade
     trade.closing_state = closing_state
-    @closed_trade_list << trade
+    @closed_value += trade.final_profit
     @trade_mapper.store trade
-    @statistic_mapper.save statistic
   end
 
   def current_value(market_state)
@@ -32,15 +29,6 @@ class TradeHandler
       profit += trade.profit market_state
     end
 
-    @closed_trade_list.each do |trade|
-      profit += trade.final_profit
-    end
-
-    profit
-  end
-
-  private
-  def statistic
-    @statistic_generator.get @closed_trade_list
+    profit + @closed_value
   end
 end

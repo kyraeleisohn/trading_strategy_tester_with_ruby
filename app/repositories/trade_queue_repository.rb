@@ -19,4 +19,8 @@ class TradeQueueRepository
   def store(table)
     table.with(collection: TRADE_QUEUE_COLLECTION, database: "test_database").save
   end
+
+  def delete(id)
+    TradeTable.with(collection: TRADE_QUEUE_COLLECTION, database: "test_database").where({'id' => id}).delete
+  end
 end

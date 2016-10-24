@@ -1,72 +1,79 @@
 class StrategyStatisticMapper < Mapper
-  def initialize(repository)
-    @repository = repository
+  def initialize(summary_mapper)
+    @summary_mapper = summary_mapper
   end
 
-  def find_by_id(statistic_id)
-    table = @repository.find_by_id(statistic_id)
+  def find_by_id(strategy_id)
+    search_request = StrategySummarySearchRequest.new
+    search_request.only_with_strategy_id strategy_id
 
-    from_table(table)
+    table = @summary_mapper.find_one search_request
+
+    from_summary(table)
   end
 
   def find_all
-    table_list = @repository.find_all
+    search_request = StrategySummarySearchRequest.new
+    table_list = @summary_mapper.find search_request
 
-    table_list.collect { |table| from_table(table) }
+    table_list.collect { |table| from_summary(table) }
   end
 
   def paginate(page, limit)
-    table_list =  @repository.paginate(page, limit)
+    table_list =  @summary_mapper.paginate(page, limit)
 
-    table_list.collect { |table| from_table(table) }
+    table_list.collect { |table| from_summary(table) }
   end
 
   def count
-    @repository.count
-  end
-
-  def save(statistic)
-    @repository.save(to_table(statistic))
+    @summary_mapper.count
   end
 
   private
-  def to_table(statistic)
-    StrategyStatisticTable.new(
-      id: statistic.id,
-      profit: statistic.profit,
-      profitability: statistic.profitability,
-      trade_count: statistic.trade_count,
-      average_loss: statistic.average_loss,
-      average_win: statistic.average_win,
-      maximum_loss: statistic.maximum_loss,
-      maximum_win: statistic.maximum_win,
-      buy_percentage: statistic.buy_percentage,
-      buy_win_count: statistic.buy_win_count,
-      sell_win_count: statistic.sell_win_count,
-      average_trade_length: statistic.average_trade_length,
-      one_minute_trade_count: statistic.one_minute_trade_count,
-      one_minute_trade_profit: statistic.one_minute_trade_profit,
-      one_minute_trade_win_percentage: statistic.one_minute_trade_win_percentage
+  def from_summary(summary)
+    StrategyStatistic.new(
+        summary.strategy_id,
+        summary.profit,
+        get_profitability(summary),
+        summary.trade_count,
+        get_average_loss(summary),
+        get_average_win(summary),
+        summary.maximum_loss,
+        summary.maximum_win,
+        get_buy_percentage(summary),
+        summary.buy_trade_win_count,
+        summary.sell_trade_win_count,
+        get_average_trade_length(summary),
+        summary.one_minute_trade_count,
+        summary.one_minute_trade_profit,
+        get_one_minute_trade_win_percentage(summary)
     )
   end
 
-  def from_table(table)
-    StrategyStatistic.new(
-      table.id,
-      table.profit,
-      table.profitability,
-      table.trade_count,
-      table.average_loss,
-      table.average_win,
-      table.maximum_loss,
-      table.maximum_win,
-      table.buy_percentage,
-      table.buy_win_count,
-      table.sell_win_count,
-      table.average_trade_length,
-      table.one_minute_trade_count,
-      table.one_minute_trade_profit,
-      table.one_minute_trade_win_percentage
-    )
+  def get_one_minute_trade_win_percentage(summary)
+    summary.one_minute_trade_wins.percent_of summary.one_minute_trade_count
+  end
+
+  def get_buy_percentage(summary)
+    summary.buy_trade_count.percent_of summary.trade_count
+  end
+
+  def get_average_win(summary)
+    summary.win_profit.percent_of summary.winning_trades
+  end
+
+  def get_average_loss(summary)
+    summary.loss_profit.percent_of summary.losing_trades
+  end
+
+  def get_profitability(summary)
+    summary.winning_trades.percent_of summary.trade_count
+  end
+
+  def get_average_trade_length(summary)
+    if summary.trade_count.equal? 0 then
+      return 0
+    end
+    summary.sum_trade_length / summary.trade_count
   end
 end

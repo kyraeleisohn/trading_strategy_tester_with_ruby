@@ -23,6 +23,9 @@ class StrategyStatisticsController < ApplicationController
 
   private
   def mapper
-    StrategyStatisticMapper.new(StrategyStatisticRepository.new)
+    strategy_summary_mapper_builder = StrategySummaryMapperBuilder.new
+    strategy_summary_mapper = strategy_summary_mapper_builder.get
+
+    StrategyStatisticMapper.new strategy_summary_mapper
   end
 end

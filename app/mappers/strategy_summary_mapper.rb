@@ -16,6 +16,12 @@ class StrategySummaryMapper < Mapper
     domains.first
   end
 
+  def paginate(page, limit)
+    table_list = @repository.paginate(page, limit)
+
+    table_list.collect { |table| from_table(table) }
+  end
+
   def count
     @repository.count
   end
