@@ -5,35 +5,35 @@ class BalanceChart extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : []
+            labels : [],
+            data_sets : {
+                floating_value : [],
+                closed_value: []
+            }
         };
     }
 
-    default() {
+    dataSet(label, data, color, backgoundColor) {
         return {
-            labels: [],
-            datasets: [
-                {
-                    fill: false,
-                    lineTension: 0.1,
-                    backgroundColor: 'rgba(75,192,192,0.4)',
-                    borderColor: 'rgba(75,192,192,1)',
-                    borderCapStyle: 'butt',
-                    borderDash: [],
-                    borderDashOffset: 0.0,
-                    borderJoinStyle: 'miter',
-                    pointBorderColor: 'rgba(75,192,192,1)',
-                    pointBackgroundColor: '#fff',
-                    pointBorderWidth: 1,
-                    pointHoverRadius: 5,
-                    pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-                    pointHoverBorderColor: 'rgba(220,220,220,1)',
-                    pointHoverBorderWidth: 2,
-                    pointRadius: 1,
-                    pointHitRadius: 10,
-                    data: []
-                }
-            ]
+            label: label,
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: backgoundColor,
+            borderColor: color,
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: color,
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: color,
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: data
         };
     }
 
@@ -59,16 +59,29 @@ class BalanceChart extends React.Component {
     }
 
     render() {
-        var label = new Array;
-        var dataSet = new Array;
-        for (var i = 0, length = this.state.data.length; i < length; i++) {
-            dataSet.push(this.state.data[i].value);
-            label.push(this.state.data[i].datetime);
-        }
+        var dataSets = new Array;
 
-        var chartData = this.default();
-        chartData.datasets[0].data = dataSet;
-        chartData.labels = label;
+        dataSets.push(
+            this.dataSet(
+                'Floating value',
+                this.state.data_sets.floating_value,
+                'rgba(75,192,192,1)',
+                'rgba(75,192,192,0.4)'
+            )
+        );
+        dataSets.push(
+            this.dataSet(
+                'Closed value',
+                this.state.data_sets.closed_value,
+                'rgba(192,75,75,1)',
+                'rgba(192,75,75,0.4)'
+            )
+        );
+
+        var chartData = {
+            labels : this.state.labels,
+            datasets : dataSets
+        };
 
         return (
             <div className="description col-md-12">

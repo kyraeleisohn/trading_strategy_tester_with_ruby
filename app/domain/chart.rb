@@ -7,13 +7,13 @@ class Chart
     @data = data
   end
 
-  def add(datetime, value)
+  def add(datetime, values)
     changed = false
     if @count == 0 || @count % @mod == 0 then
       @data.push(
         {
-          'datetime' => datetime,
-          'value' => value
+          'label' => datetime,
+          'values' => values
         }
       )
 

@@ -1,5 +1,5 @@
 class TradeHandler
-  attr_reader :open_trade_list
+  attr_reader :open_trade_list, :closed_value
 
   def initialize(trade_id_generator, open_trade_list, trade_mapper)
     @trade_id_generator = trade_id_generator

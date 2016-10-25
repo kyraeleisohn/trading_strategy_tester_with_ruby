@@ -44,7 +44,7 @@ class Exchange
   end
 
   def finish_cycle(market_state)
-    @chart.add(market_state.date_time, market_state.ask_price)
+    @chart.add(market_state.date_time, {'ask_price' => market_state.ask_price})
     @status.finish_cycle
     @status.time_spent = @timer.time_spent
 

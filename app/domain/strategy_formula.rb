@@ -28,12 +28,20 @@ class StrategyFormula
       @trade_handler.close_trade(open_trades.sample, market_state)
     end
 
-    if @chart.add(market_state.date_time, @trade_handler.current_value(market_state)) then
-      @chart_mapper.store @chart
-    end
+    update_chart market_state
   end
 
   private
+
+  def update_chart(market_state)
+    chart_data = {
+        'floating_value' => @trade_handler.current_value(market_state),
+        'closed_value' => @trade_handler.closed_value
+    }
+    if @chart.add(market_state.date_time, chart_data) then
+      @chart_mapper.store @chart
+    end
+  end
 
   def description
     StrategyDescription.new(
