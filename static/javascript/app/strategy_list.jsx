@@ -38,9 +38,9 @@ class StrategyList extends React.Component {
 
     render() {
         var strategyList = this.state.data.data.map(
-            function(strategyStatistic) {
+            function(strategy) {
                 return (
-                    <Strategy dataId={strategyStatistic.id} />
+                    <Strategy dataId={strategy.id} url="/strategies" pollInterval="20000"/>
                 );
             }
         );

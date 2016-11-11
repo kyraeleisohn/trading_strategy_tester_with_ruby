@@ -5,7 +5,7 @@ class StrategiesController < ApplicationController
     @all = model.get(params[:page].to_i)
     respond_to do |format|
       format.json { render json: @all }
-      format.html
+      format.html { render json: @all }
     end
   end
 

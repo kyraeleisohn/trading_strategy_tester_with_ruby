@@ -7,7 +7,7 @@ class Content extends React.Component{
         return (
             <div className="content">
                 <ExchangeList url="/exchange_statuses?q=status:processing" pollInterval="2000"/>
-                <StrategyList url="/strategy_statistics" pollInterval="2000"/>
+                <StrategyList url="/strategies" pollInterval="2000"/>
             </div>
         );
     }
