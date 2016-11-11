@@ -1,4 +1,4 @@
-class TradeQueueProcessorBuilder
+class TradeQueueProcessorBuilder < DomainBuilder
   def get
     trade_queue_mapper_builder = TradeQueueMapperBuilder.new
     trade_queue_mapper = trade_queue_mapper_builder.get

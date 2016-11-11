@@ -1,5 +1,5 @@
 
-class StrategyParameterListBuilder
+class StrategyParameterListBuilder < DomainBuilder
   def initialize
     @parameter_list_list = generate_parameter_list_list
   end
@@ -14,9 +14,5 @@ class StrategyParameterListBuilder
   private
   def generate_parameter_list_list
     (99..100)
-  end
-
-  def generate_id
-    SecureRandom.hex(32)
   end
 end

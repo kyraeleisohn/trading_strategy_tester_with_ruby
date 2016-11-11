@@ -1,4 +1,4 @@
-class GetAllStrategyDescriptionModel < StrategyDescriptionModel
+class GetAllStrategyModel < StrategyModel
   ITEM_PER_PAGE = 15
   def get(page = 1)
     total = @mapper.count
@@ -13,7 +13,7 @@ class GetAllStrategyDescriptionModel < StrategyDescriptionModel
       :from          => (page - 1) * total,
       :to            => page * total,
       :pages         => get_pager_url_list(page, last_page),
-      :data          => @mapper.paginate(page, ITEM_PER_PAGE).collect {|description| get_description_as_array description}
+      :data          => @mapper.paginate(page, ITEM_PER_PAGE).collect {|strategy| get_as_array strategy}
     }
   end
 
@@ -63,7 +63,7 @@ class GetAllStrategyDescriptionModel < StrategyDescriptionModel
   end
 
   def get_page_url(page)
-    Rails.application.routes.url_helpers.strategy_descriptions_path(
+    Rails.application.routes.url_helpers.strategies_path(
       {
           :page => page
       }

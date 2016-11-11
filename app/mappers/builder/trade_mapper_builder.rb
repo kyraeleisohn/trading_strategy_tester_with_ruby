@@ -1,4 +1,4 @@
-class TradeMapperBuilder
+class TradeMapperBuilder < MapperBuilder
   def get
     TradeMapper.new(
         TradeRepository.new,

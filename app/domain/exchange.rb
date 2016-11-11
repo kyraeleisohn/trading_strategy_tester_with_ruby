@@ -9,7 +9,8 @@ class Exchange
       chart,
       chart_mapper,
       timer,
-      strategy_list
+      strategy_list,
+      strategy_list_mapper
   )
     @feed = feed
     @status = status
@@ -18,6 +19,7 @@ class Exchange
     @chart_mapper = chart_mapper
     @timer = timer
     @strategy_list = strategy_list
+    @strategy_list_mapper = strategy_list_mapper
     @cycle_count = 0
   end
 
@@ -57,5 +59,6 @@ class Exchange
   def log
     @status_mapper.store @status
     @chart_mapper.store @chart
+    @strategy_list_mapper.store @strategy_list
   end
 end

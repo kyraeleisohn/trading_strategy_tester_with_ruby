@@ -1,6 +1,6 @@
-class TradeHandlerBuilder
+class TradeHandlerBuilder < DomainBuilder
   def get
-    trade_id_generator = TradeIdGenerator.new
+    id_generator = IdGenerator.new
 
     open_trade_list = TradeList.new
 
@@ -8,7 +8,7 @@ class TradeHandlerBuilder
     trade_mapper = trade_mapper_builder.get
 
     TradeHandler.new(
-        trade_id_generator,
+        id_generator,
         open_trade_list,
         trade_mapper
     )

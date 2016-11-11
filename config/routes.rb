@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
+  resources :dashboard
+  resources :strategies
   resources :strategy_statistics
-  resources :strategy_descriptions
   resources :strategy_charts
   resources :exchange_charts
   resources :exchange_statuses
@@ -13,7 +14,7 @@ Rails.application.routes.draw do
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'strategies#index'
+  root 'dashboard#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

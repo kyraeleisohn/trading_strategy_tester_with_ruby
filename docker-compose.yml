@@ -2,6 +2,9 @@ mongodb:
   image: mongo
   ports:
     - "27017:27017"
+  volumes:
+    - ./tmp/data/configdb:/data/configdb
+    - ./tmp/data/db:/data/db
 
 mongo-seed:
   build: ./environment/services/mongo-seed
