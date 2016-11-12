@@ -9,7 +9,8 @@ class StrategyModel
         :id => strategy.id,
         :name => strategy.name,
         :parameter_list => strategy.parameter_list,
-        :chart_id => strategy.chart.id
+        :chart_id => strategy.chart.id,
+        :indicator_id => strategy.indicator.id
     }
   end
 end

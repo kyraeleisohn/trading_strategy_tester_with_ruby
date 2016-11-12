@@ -10,8 +10,8 @@ class Indicator
     @chart.add(
       market_state.date_time,
       {
-       'plus ten' => market_state.ask_price * 1.1,
-       'minus ten' => market_state.ask_price * 0.9,
+       'plus_ten' => market_state.ask_price * 1.1,
+       'minus_ten' => market_state.ask_price * 0.9,
       }
     )
   end

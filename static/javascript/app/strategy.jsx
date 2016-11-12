@@ -2,6 +2,7 @@ import React from 'react';
 import Statistic from './statistic.jsx';
 import TradeList from './trade_list.jsx';
 import BalanceChart from './balance_chart.jsx';
+import Indicator from './indicator.jsx';
 
 class Strategy extends React.Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class Strategy extends React.Component {
             data: {
                 parameter_list: [],
                 chart_id: null,
+                indicator_id: null,
             }
         };
     }
@@ -64,6 +66,7 @@ class Strategy extends React.Component {
                             </table>
                         </div>
                         <BalanceChart dataId={strategy.chart_id} url="/strategy_charts" pollInterval="20000"/>
+                        <Indicator dataId={strategy.indicator_id} url="/strategy_indicators" pollInterval="20000"/>
                     </div>
                     <Statistic dataId={this.props.dataId} url="/strategy_statistics" pollInterval="20000"/>
                     <TradeList dataId={this.props.dataId} url="/strategies" pollInterval="20000"/>
