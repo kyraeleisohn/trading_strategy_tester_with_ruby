@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :strategies
   resources :strategy_statistics
   resources :strategy_charts
+  resources :strategy_indicators
   resources :exchange_charts
   resources :exchange_statuses
 

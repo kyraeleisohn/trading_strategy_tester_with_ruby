@@ -1,19 +1,21 @@
 
 class Strategy
-  attr_accessor :id, :name, :parameter_list, :chart, :trade_handler
+  attr_accessor :id, :name, :parameter_list, :chart, :trade_handler, :indicator
 
   def initialize(
     id,
     name,
     parameters,
     trade_handler,
-    chart
+    chart,
+    indicator
   )
     @id = id
     @name = name
     @parameter_list = parameters
     @trade_handler = trade_handler
     @chart = chart
+    @indicator = indicator
   end
 
   def tick(market_state)
@@ -28,6 +30,7 @@ class Strategy
       @trade_handler.close_trade(open_trades.sample, market_state)
     end
 
+    @indicator.enforce market_state
     update_chart market_state
   end
 

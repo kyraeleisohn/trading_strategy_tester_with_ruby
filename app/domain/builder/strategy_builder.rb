@@ -11,12 +11,16 @@ class StrategyBuilder < DomainBuilder
     chart_builder = ChartBuilder.new @tick_count
     chart = chart_builder.get
 
+    indicator_builder = IndicatorBuilder.new
+    indicator = indicator_builder.get @tick_count
+
     Strategy.new(
       generate_id,
       'random',
       parameter_list,
       trade_handler,
-      chart
+      chart,
+      indicator
     )
   end
 end
