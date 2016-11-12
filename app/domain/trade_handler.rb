@@ -1,11 +1,12 @@
 class TradeHandler
-  attr_reader :open_trade_list, :closed_value
+  attr_reader :id, :open_trade_list, :closed_value
 
-  def initialize(trade_id_generator, open_trade_list, trade_mapper)
+  def initialize(id, trade_id_generator, open_trade_list, trade_mapper)
+    @id = id
     @trade_id_generator = trade_id_generator
     @open_trade_list = open_trade_list
     @trade_mapper = trade_mapper
-    @closed_value = 0;
+    @closed_value = 0
   end
 
   def open_buy_trade(strategy_id, opening_state)

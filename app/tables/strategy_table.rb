@@ -7,4 +7,5 @@ class StrategyTable
   field :name, type: String
   field :parameter_list, type: Hash
   field :chart_id, type: String
+  field :trade_handler_id, type: String
 end

@@ -1,7 +1,8 @@
 class StrategyMapper < Mapper
-  def initialize(repository, chart_mapper)
+  def initialize(repository, chart_mapper, trade_handler_builder)
     @repository = repository
     @chart_mapper = chart_mapper
+    @trade_handler_builder = trade_handler_builder
   end
 
   def find_by_id(id)
@@ -29,6 +30,7 @@ class StrategyMapper < Mapper
   def store(domain)
     @repository.store(to_table(domain))
     @chart_mapper.store domain.chart
+    @trade_handler_builder.store domain.trade_handler
   end
 
   private
@@ -37,15 +39,14 @@ class StrategyMapper < Mapper
       id: domain.id,
       name: domain.name,
       parameter_list: domain.parameter_list,
-      chart_id: domain.chart.id
+      chart_id: domain.chart.id,
+      trade_handler_id: domain.trade_handler.id
     )
   end
 
   def from_table(table)
-    # Trade handler should be persisted
-    trade_handler_builder = TradeHandlerBuilder.new
-    trade_handler = trade_handler_builder.get
 
+    trade_handler = @trade_handler_builder.find_by_id table.trade_handler_id
     chart = @chart_mapper.find_by_id table.chart_id
 
     Strategy.new(

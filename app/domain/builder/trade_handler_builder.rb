@@ -8,6 +8,7 @@ class TradeHandlerBuilder < DomainBuilder
     trade_mapper = trade_mapper_builder.get
 
     TradeHandler.new(
+        generate_id,
         id_generator,
         open_trade_list,
         trade_mapper

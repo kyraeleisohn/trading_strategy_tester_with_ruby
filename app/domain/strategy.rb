@@ -1,6 +1,6 @@
 
 class Strategy
-  attr_accessor :id, :name, :parameter_list, :chart
+  attr_accessor :id, :name, :parameter_list, :chart, :trade_handler
 
   def initialize(
     id,
