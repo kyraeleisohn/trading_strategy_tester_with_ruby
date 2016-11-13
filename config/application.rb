@@ -24,8 +24,8 @@ module TradingStrategyResultAnalytics
     config.active_record.raise_in_transactional_callbacks = true
 
     config.logger = LogStashLogger.new(type: :udp, host: 'logstash', port: 12201, buffer_max_items: 5000)
-    #config.lograge.enabled = true
-    #config.lograge.formatter = Lograge::Formatters::Logstash.new
+    Mongoid.logger.level = Logger::FATAL
+    Mongo::Logger.logger.level = Logger::FATAL
 
     config.autoload_paths << "#{Rails.root}/app/domain/builder"
     config.autoload_paths << "#{Rails.root}/app/mappers/builder"
