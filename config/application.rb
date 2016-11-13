@@ -23,8 +23,9 @@ module TradingStrategyResultAnalytics
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
 
-    config.mongoid.logger = Logger.new("#{Rails.root}/log/mongoid.log")
-    Mongo::Logger.logger.level = ::Logger::FATAL
+    config.logger = LogStashLogger.new(type: :udp, host: 'logstash', port: 12201, buffer_max_items: 5000)
+    #config.lograge.enabled = true
+    #config.lograge.formatter = Lograge::Formatters::Logstash.new
 
     config.autoload_paths << "#{Rails.root}/app/domain/builder"
     config.autoload_paths << "#{Rails.root}/app/mappers/builder"

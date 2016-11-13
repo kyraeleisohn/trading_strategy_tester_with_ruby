@@ -57,6 +57,7 @@ class Exchange
   end
 
   def log
+    Rails.logger.info "Processing the request..."
     @status_mapper.store @status
     @chart_mapper.store @chart
     @strategy_list_mapper.store @strategy_list

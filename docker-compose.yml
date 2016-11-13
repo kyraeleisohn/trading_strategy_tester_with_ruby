@@ -1,21 +1,36 @@
-mongodb:
-  image: mongo
-  ports:
-    - "27017:27017"
-  volumes:
-    - ./tmp/data/configdb:/data/configdb
-    - ./tmp/data/db:/data/db
+version: '2'
 
-mongo-seed:
-  build: ./environment/services/mongo-seed
-  links:
-    - mongodb
-web:
-  build: ./environment/services/web
-  command: bundle exec rails s -p 3000 -b '0.0.0.0'
-  volumes:
-    - .:/trading_strategy_result_analytics
-  ports:
-    - "3000:3000"
-  links:
-    - mongodb
+services:
+  mongodb:
+    image: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./tmp/data/configdb:/data/configdb
+      - ./tmp/data/db:/data/db
+
+  mongo-seed:
+    build: ./environment/services/mongo-seed
+
+  web:
+    build: ./environment/services/web
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    volumes:
+      - .:/trading_strategy_result_analytics
+    ports:
+      - "3000:3000"
+
+  elasticsearch:
+    image: elasticsearch:2.0
+    command: elasticsearch -Des.network.host=0.0.0.0
+
+  logstash:
+    image: logstash:2.0
+    command: logstash -f /etc/logstash/conf.d/logstash.conf
+    volumes:
+      - "./environment/services/logstash/:/etc/logstash/conf.d"
+
+  kibana:
+    image: kibana:4.2
+    ports:
+      - "5601:5601"
