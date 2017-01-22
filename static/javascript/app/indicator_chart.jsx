@@ -7,8 +7,7 @@ class IndicatorChart extends React.Component {
         this.state = {
             labels : [],
             data_sets : {
-                minus_ten : [],
-                plus_ten: []
+                value : []
             }
         };
     }
@@ -63,18 +62,10 @@ class IndicatorChart extends React.Component {
 
         dataSets.push(
             this.dataSet(
-                'Plus 10%',
-                this.state.data_sets.plus_ten,
+                'value',
+                this.state.data_sets.value,
                 'rgba(75,192,192,1)',
                 'rgba(75,192,192,0.4)'
-            )
-        );
-        dataSets.push(
-            this.dataSet(
-                'Minus 10%',
-                this.state.data_sets.minus_ten,
-                'rgba(192,75,75,1)',
-                'rgba(192,75,75,0.4)'
             )
         );
 

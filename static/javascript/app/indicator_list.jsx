@@ -6,7 +6,8 @@ class IndicatorList extends React.Component {
         super(props);
         this.state = {
             data: {
-                data: []
+                id: '',
+                item_id_list: []
             }
         };
     }
@@ -14,7 +15,7 @@ class IndicatorList extends React.Component {
     loadDataFromServer() {
         $.ajax(
             {
-                url: this.props.url,
+                url: this.props.url + '/' + this.props.dataId,
                 dataType: 'json',
                 cache: false,
                 success: function(data) {
@@ -37,10 +38,10 @@ class IndicatorList extends React.Component {
     }
 
     render() {
-        var indicatorList = this.state.data.data.map(
-            function(indicator) {
+        var indicatorList = this.state.data.item_id_list.map(
+            function(item_id) {
                 return (
-                    <Indicator dataId={indicator.id} url="/strategy_indicators" pollInterval="20000"/>
+                    <Indicator dataId={item_id} url="/strategy_indicators" pollInterval="20000"/>
                 );
             }
         );

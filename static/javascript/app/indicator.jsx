@@ -12,7 +12,7 @@ class Indicator extends React.Component {
     loadDataFromServer() {
         $.ajax(
             {
-                url: this.props.url + '/' + this.props.dataId ,
+                url: this.props.url + '/' + this.props.dataId,
                 dataType: 'json',
                 cache: false,
                 success: function(data) {
