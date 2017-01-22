@@ -23,7 +23,7 @@ class ExchangeBuilder < DomainBuilder
 
     timer = Timer.new
 
-    strategy_list_builder = StrategyListBuilder.new
+    strategy_list_builder = RandomStrategyListBuilder.new
     strategy_list = strategy_list_builder.get tick_count
 
     strategy_list_mapper_builder = StrategyListMapperBuilder.new

@@ -64,10 +64,6 @@ GEM
       railties (>= 4.2.0)
       thor (>= 0.14, < 2.0)
     json (1.8.3)
-    lograge (0.4.1)
-      actionpack (>= 4, < 5.1)
-      activesupport (>= 4, < 5.1)
-      railties (>= 4, < 5.1)
     logstash-event (1.2.02)
     logstash-logger (0.20.0)
       logstash-event (~> 1.2)
@@ -167,8 +163,6 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   jbuilder (~> 2.0)
   jquery-rails
-  lograge
-  logstash-event
   logstash-logger
   mongoid (~> 5.1.0)
   puma

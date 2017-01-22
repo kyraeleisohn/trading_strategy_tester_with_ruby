@@ -28,6 +28,14 @@ module TradingStrategyResultAnalytics
     Mongo::Logger.logger.level = Logger::FATAL
 
     config.autoload_paths << "#{Rails.root}/app/domain/builder"
+    config.autoload_paths << "#{Rails.root}/app/domain/strategies"
+    config.autoload_paths << "#{Rails.root}/app/domain/strategies/random"
+    config.autoload_paths << "#{Rails.root}/app/domain/strategies/random/builder"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/exchange"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/exchange/builder"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/moving_average"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/moving_average/builder"
     config.autoload_paths << "#{Rails.root}/app/mappers/builder"
     config.autoload_paths << "#{Rails.root}/app/models/trade"
     config.autoload_paths << "#{Rails.root}/app/models/strategy"

@@ -7,12 +7,9 @@ class Indicator
   end
 
   def enforce(market_state)
-    @chart.add(
-      market_state.date_time,
-      {
-       'plus_ten' => market_state.ask_price * 1.1,
-       'minus_ten' => market_state.ask_price * 0.9,
-      }
-    )
+  end
+
+  def value
+    nil
   end
 end
