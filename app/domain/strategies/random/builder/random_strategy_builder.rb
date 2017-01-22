@@ -6,7 +6,25 @@ class RandomStrategyBuilder < StrategyBuilder
     'random'
   end
 
+  def get_strategy(
+      id,
+      name,
+      parameter_list,
+      trade_handler,
+      chart,
+      indicator_list
+  )
+    RandomStrategy.new(
+        id,
+        name,
+        parameter_list,
+        trade_handler,
+        chart,
+        indicator_list
+    )
+  end
+
   def get_indicator_list_builder
-    IndicatorListBuilder.new
+    RandomStrategyIndicatorListBuilder.new
   end
 end

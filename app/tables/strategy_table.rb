@@ -8,5 +8,5 @@ class StrategyTable
   field :parameter_list, type: Hash
   field :chart_id, type: String
   field :trade_handler_id, type: String
-  field :indicator_id, type: String
+  field :indicator_list_id, type: String
 end

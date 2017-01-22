@@ -14,7 +14,7 @@ class StrategyBuilder < DomainBuilder
     indicator_list_builder = get_indicator_list_builder
     indicator_list = indicator_list_builder.get @tick_count
 
-    Strategy.new(
+    get_strategy(
         generate_id,
         get_name,
         parameter_list,
@@ -25,6 +25,24 @@ class StrategyBuilder < DomainBuilder
   end
 
   protected
+
+  def get_strategy(
+    id,
+    name,
+    parameter_list,
+    trade_handler,
+    chart,
+    indicator_list
+  )
+    Strategy.new(
+        id,
+        name,
+        parameter_list,
+        trade_handler,
+        chart,
+        indicator_list
+    )
+  end
 
   def get_name
     'empty'

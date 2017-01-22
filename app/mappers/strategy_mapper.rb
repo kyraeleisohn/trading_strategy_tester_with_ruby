@@ -1,9 +1,9 @@
 class StrategyMapper < Mapper
-  def initialize(repository, chart_mapper, trade_handler_mapper, indicator_mapper)
+  def initialize(repository, chart_mapper, trade_handler_mapper, indicator_list_mapper)
     @repository = repository
     @chart_mapper = chart_mapper
     @trade_handler_mapper = trade_handler_mapper
-    @indicator_mapper = indicator_mapper
+    @indicator_list_mapper = indicator_list_mapper
   end
 
   def find_by_id(id)
@@ -32,7 +32,7 @@ class StrategyMapper < Mapper
     @repository.store(to_table(domain))
     @chart_mapper.store domain.chart
     @trade_handler_mapper.store domain.trade_handler
-    @indicator_mapper.store domain.indicator
+    @indicator_list_mapper.store domain.indicator_list
   end
 
   private
@@ -43,7 +43,7 @@ class StrategyMapper < Mapper
       parameter_list: domain.parameter_list,
       chart_id: domain.chart.id,
       trade_handler_id: domain.trade_handler.id,
-      indicator_id: domain.indicator.id
+      indicator_list_id: domain.indicator_list.id
     )
   end
 
@@ -51,7 +51,7 @@ class StrategyMapper < Mapper
 
     trade_handler = @trade_handler_mapper.find_by_id table.trade_handler_id
     chart = @chart_mapper.find_by_id table.chart_id
-    indicator = @indicator_mapper.find_by_id  table.indicator_id
+    indicator_list = @indicator_list_mapper.find_by_id table.indicator_list_id
 
     Strategy.new(
       table.id,
@@ -59,7 +59,7 @@ class StrategyMapper < Mapper
       table.parameter_list,
       trade_handler,
       chart,
-      indicator
+      indicator_list
     )
   end
 end

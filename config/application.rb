@@ -43,5 +43,6 @@ module TradingStrategyResultAnalytics
     config.autoload_paths << "#{Rails.root}/app/models/exchange_status"
     config.autoload_paths << "#{Rails.root}/app/models/chart"
     config.autoload_paths << "#{Rails.root}/app/models/indicators"
+    config.autoload_paths << "#{Rails.root}/app/models/indicator_lists"
   end
 end
