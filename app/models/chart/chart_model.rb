@@ -15,6 +15,11 @@ class ChartModel
   private
   def get_as_data_sets(data)
     data_sets = Hash.new
+
+    if data.empty?
+      return data_sets
+    end
+
     data.first['values'].keys.each do |key|
        data_set = data.collect do |item|
         item['values'][key]
