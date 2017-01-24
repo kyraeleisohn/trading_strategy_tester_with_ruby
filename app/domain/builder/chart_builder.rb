@@ -5,11 +5,12 @@ class ChartBuilder < DomainBuilder
     @tick_count = tick_count
   end
 
-  def get
+  def get(name)
     Chart.new(
       generate_id,
       get_chart_mod,
-      []
+      [],
+      name
     )
   end
 

@@ -9,7 +9,7 @@ class StrategyBuilder < DomainBuilder
     trade_handler = trade_handler_builder.get
 
     chart_builder = ChartBuilder.new @tick_count
-    chart = chart_builder.get
+    chart = chart_builder.get 'strategy'
 
     indicator_list_builder = get_indicator_list_builder
     indicator_list = indicator_list_builder.get @tick_count

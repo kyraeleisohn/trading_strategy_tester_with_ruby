@@ -16,7 +16,8 @@ class ChartMapper < Mapper
     ChartTable.new(
       id: chart.id,
       mod: chart.mod,
-      data: chart.data
+      data: chart.data,
+      name: chart.name
     )
   end
 
@@ -24,7 +25,8 @@ class ChartMapper < Mapper
     Chart.new(
       table.id,
       table.mod,
-      table.data
+      table.data,
+      table.name
     )
   end
 end

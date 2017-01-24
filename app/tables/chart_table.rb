@@ -6,4 +6,5 @@ class ChartTable
   field :id, type: String
   field :mod, type: Integer
   field :data, type: Array
+  field :name, type: String
 end

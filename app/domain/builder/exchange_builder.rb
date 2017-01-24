@@ -16,7 +16,7 @@ class ExchangeBuilder < DomainBuilder
     exchange_status_mapper = exchange_status_mapper_builder.get
 
     chart_builder = ChartBuilder.new tick_count
-    chart = chart_builder.get
+    chart = chart_builder.get 'exchange'
 
     chart_mapper_builder = ChartMapperBuilder.new
     chart_mapper = chart_mapper_builder.get

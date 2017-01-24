@@ -8,7 +8,8 @@ class ChartModel
     {
       :id => chart.id,
       :labels => get_as_labels(chart.data),
-      :data_sets => get_as_data_sets(chart.data)
+      :data_sets => get_as_data_sets(chart.data),
+      :name => chart.name,
     }
   end
 

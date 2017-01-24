@@ -109,7 +109,7 @@ class IndicatorGroup extends React.Component {
                 background: 'rgba(192,75,75,0.4)'
             },
         ];
-        var i = 0;
+        var color_index = 0;
 
         for (var indicator_id in this.state) {
             if (!this.state.hasOwnProperty(indicator_id)) {
@@ -118,16 +118,16 @@ class IndicatorGroup extends React.Component {
             var indicator = this.state[indicator_id];
             if (indicator.data_sets && indicator.data_sets.value)
             {
-                var color = colors[i];
+                var color = colors[color_index];
+                color_index++;
                 dataSets.push(
                     this.dataSet(
-                        'value',
+                        indicator.name,
                         indicator.data_sets.value,
                         color['main'],
                         color['background']
                     )
                 );
-                i++;
 
                 labels = indicator.labels
             }
