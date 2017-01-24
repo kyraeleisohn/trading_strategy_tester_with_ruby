@@ -65,11 +65,11 @@ class Strategy extends React.Component {
                                 </tbody>
                             </table>
                         </div>
-                        <BalanceChart dataId={strategy.chart_id} url="/strategy_charts" pollInterval="20000"/>
-                        <IndicatorGroup dataId={strategy.indicator_list_id} url="/strategy_indicator_lists" pollInterval="20000"/>
+                        <BalanceChart dataId={strategy.chart_id} url="/strategy_charts" pollInterval="100000"/>
+                        <IndicatorGroup dataId={strategy.indicator_list_id} url="/strategy_indicator_lists" pollInterval="100000"/>
                     </div>
-                    <Statistic dataId={this.props.dataId} url="/strategy_statistics" pollInterval="20000"/>
-                    <TradeList dataId={this.props.dataId} url="/strategies" pollInterval="20000"/>
+                    <Statistic dataId={this.props.dataId} url="/strategy_statistics" pollInterval="100000"/>
+                    <TradeList dataId={this.props.dataId} url="/strategies" pollInterval="100000"/>
                 </div>
             </div>
         );

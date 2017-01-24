@@ -41,7 +41,7 @@ class IndicatorList extends React.Component {
         var indicatorList = this.state.data.item_id_list.map(
             function(item_id) {
                 return (
-                    <Indicator dataId={item_id} url="/strategy_indicators" pollInterval="20000"/>
+                    <Indicator dataId={item_id} url="/strategy_indicators" pollInterval="100000"/>
                 );
             }
         );

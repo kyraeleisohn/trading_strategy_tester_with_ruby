@@ -40,7 +40,7 @@ class StrategyList extends React.Component {
         var strategyList = this.state.data.data.map(
             function(strategy) {
                 return (
-                    <Strategy dataId={strategy.id} url="/strategies" pollInterval="20000"/>
+                    <Strategy dataId={strategy.id} url="/strategies" pollInterval="100000"/>
                 );
             }
         );

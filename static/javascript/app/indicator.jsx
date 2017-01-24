@@ -32,7 +32,7 @@ class Indicator extends React.Component {
 
     render() {
         return (
-            <IndicatorChart dataId={this.state.chart_id} url="/strategy_charts" pollInterval="20000"/>
+            <IndicatorChart dataId={this.state.chart_id} url="/strategy_charts" pollInterval="100000"/>
         );
     }
 }
