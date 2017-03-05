@@ -36,6 +36,8 @@ module TradingStrategyResultAnalytics
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/exchange/builder"
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/moving_average"
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/moving_average/builder"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/efficiency_ratio"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/efficiency_ratio/builder"
     config.autoload_paths << "#{Rails.root}/app/mappers/builder"
     config.autoload_paths << "#{Rails.root}/app/models/trade"
     config.autoload_paths << "#{Rails.root}/app/models/strategy"
