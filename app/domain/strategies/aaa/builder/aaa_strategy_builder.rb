@@ -1,9 +1,9 @@
 
-class RandomStrategyBuilder < StrategyBuilder
+class AaaStrategyBuilder < StrategyBuilder
   protected
 
   def get_name
-    'random'
+    'AAA'
   end
 
   def get_strategy(
@@ -15,7 +15,7 @@ class RandomStrategyBuilder < StrategyBuilder
       indicator_list,
       time_filter
   )
-    RandomStrategy.new(
+    AaaStrategy.new(
         id,
         name,
         parameter_list,
@@ -27,6 +27,6 @@ class RandomStrategyBuilder < StrategyBuilder
   end
 
   def get_indicator_list_builder
-    RandomStrategyIndicatorListBuilder.new
+    AaaStrategyIndicatorListBuilder.new
   end
 end

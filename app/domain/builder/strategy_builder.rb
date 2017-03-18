@@ -14,13 +14,16 @@ class StrategyBuilder < DomainBuilder
     indicator_list_builder = get_indicator_list_builder
     indicator_list = indicator_list_builder.get @tick_count
 
+    time_filter = TimeFilter.new('second', 1)
+
     get_strategy(
         generate_id,
         get_name,
         parameter_list,
         trade_handler,
         chart,
-        indicator_list
+        indicator_list,
+        time_filter
     )
   end
 
@@ -32,7 +35,8 @@ class StrategyBuilder < DomainBuilder
     parameter_list,
     trade_handler,
     chart,
-    indicator_list
+    indicator_list,
+    time_filter
   )
     Strategy.new(
         id,
@@ -40,7 +44,8 @@ class StrategyBuilder < DomainBuilder
         parameter_list,
         trade_handler,
         chart,
-        indicator_list
+        indicator_list,
+        time_filter
     )
   end
 

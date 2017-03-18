@@ -1,6 +1,7 @@
 
 class RandomStrategy < Strategy
-  def enforce(market_state)
+  protected
+  def act(market_state)
     random_factor = @parameter_list[:random_factor]
 
     if 0 == Random.new.rand(random_factor) then

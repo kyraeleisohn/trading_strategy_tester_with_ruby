@@ -8,7 +8,8 @@ class Strategy
     parameters,
     trade_handler,
     chart,
-    indicator_list
+    indicator_list,
+    time_filter
   )
     @id = id
     @name = name
@@ -16,11 +17,23 @@ class Strategy
     @trade_handler = trade_handler
     @chart = chart
     @indicator_list = indicator_list
+    @time_filter = time_filter
   end
 
   def enforce(market_state)
+    unless @time_filter.changed market_state.date_time
+      return
+    end
+
     @indicator_list.enforce market_state
     update_chart market_state
+
+    act market_state
+  end
+
+  protected
+  def act(market_state)
+
   end
 
   private

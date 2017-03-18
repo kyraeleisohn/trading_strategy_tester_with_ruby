@@ -31,6 +31,8 @@ module TradingStrategyResultAnalytics
     config.autoload_paths << "#{Rails.root}/app/domain/strategies"
     config.autoload_paths << "#{Rails.root}/app/domain/strategies/random"
     config.autoload_paths << "#{Rails.root}/app/domain/strategies/random/builder"
+    config.autoload_paths << "#{Rails.root}/app/domain/strategies/aaa"
+    config.autoload_paths << "#{Rails.root}/app/domain/strategies/aaa/builder"
     config.autoload_paths << "#{Rails.root}/app/domain/indicators"
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/exchange"
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/exchange/builder"

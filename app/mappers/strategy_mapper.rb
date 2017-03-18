@@ -59,7 +59,8 @@ class StrategyMapper < Mapper
       table.parameter_list,
       trade_handler,
       chart,
-      indicator_list
+      indicator_list,
+      TimeFilter.new('second', 1)
     )
   end
 end

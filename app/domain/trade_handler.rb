@@ -10,11 +10,17 @@ class TradeHandler
   end
 
   def open_buy_trade(strategy_id, opening_state)
-    @open_trade_list << BuyTrade.new(strategy_id, @trade_id_generator.get, opening_state)
+    new_trade = BuyTrade.new(strategy_id, @trade_id_generator.get, opening_state)
+    @open_trade_list << new_trade
+
+    new_trade
   end
 
   def open_sell_trade(strategy_id, opening_state)
-    @open_trade_list << SellTrade.new(strategy_id, @trade_id_generator.get, opening_state)
+    new_trade = SellTrade.new(strategy_id, @trade_id_generator.get, opening_state)
+    @open_trade_list << new_trade
+
+    new_trade
   end
 
   def close_trade(trade, closing_state)
