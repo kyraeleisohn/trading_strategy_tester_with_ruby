@@ -4,6 +4,6 @@ class MovingAverageIndicator < TimeWindowedIndicator
       return nil
     end
 
-    @items.inject{ |sum, value| sum + value }.to_f / @items.size
+    @items.moving_average
   end
 end

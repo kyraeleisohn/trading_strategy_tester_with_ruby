@@ -6,6 +6,7 @@ class RandomStrategyIndicatorListBuilder < IndicatorListBuilder
     psar_indicator_builder = PsarIndicatorBuilder.new
     lowest_value_indicator_builder = LowestValueIndicatorBuilder.new
     highest_value_indicator_builder = HighestValueIndicatorBuilder.new
+    exponential_moving_average_builder = ExponentialMovingAverageIndicatorBuilder.new
 
     indicator_list = super(tick_count)
 
@@ -15,6 +16,7 @@ class RandomStrategyIndicatorListBuilder < IndicatorListBuilder
     indicator_list.push exchange_indicator_builder.get(tick_count)
     indicator_list.push lowest_value_indicator_builder.get_100_seconds(tick_count)
     indicator_list.push highest_value_indicator_builder.get_100_seconds(tick_count)
+    indicator_list.push exponential_moving_average_builder.get_100_seconds(tick_count)
 
     indicator_list
   end

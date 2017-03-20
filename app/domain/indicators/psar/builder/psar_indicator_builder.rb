@@ -6,7 +6,7 @@ class PsarIndicatorBuilder < DomainBuilder
     lowest_value_indicator_buider = LowestValueIndicatorBuilder.new
     lowest_value_indicator = lowest_value_indicator_buider.get_100_minutes(tick_count)
 
-    highest_value_indicator_buider = LowestValueIndicatorBuilder.new
+    highest_value_indicator_buider = HighestValueIndicatorBuilder.new
     highest_value_indicator = highest_value_indicator_buider.get_100_minutes(tick_count)
 
     PsarIndicator.new(

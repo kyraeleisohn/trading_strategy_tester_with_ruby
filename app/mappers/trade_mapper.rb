@@ -38,7 +38,7 @@ class TradeMapper < Mapper
     TradeTable.new(
         id: trade.id,
         strategy_id: trade.strategy_id,
-        type: trade.is_buy,
+        type: trade.is_buy ? 'buy' : 'sell',
         opening_state: opening_state,
         closing_state: closing_state
     )

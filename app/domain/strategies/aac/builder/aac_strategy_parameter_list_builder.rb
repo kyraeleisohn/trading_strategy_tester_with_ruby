@@ -1,5 +1,5 @@
 
-class AaaStrategyParameterListBuilder < StrategyParameterListBuilder
+class AacStrategyParameterListBuilder < StrategyParameterListBuilder
   def initialize
     @parameter_list_list = generate_parameter_list_list
   end
@@ -14,9 +14,7 @@ class AaaStrategyParameterListBuilder < StrategyParameterListBuilder
   private
   def generate_parameter_list_list
     [
-        0.0005,
-        0.0008,
-        0.001
+      0.001,
     ]
   end
 end

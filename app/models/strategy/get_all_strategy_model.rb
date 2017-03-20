@@ -1,5 +1,5 @@
 class GetAllStrategyModel < StrategyModel
-  ITEM_PER_PAGE = 15
+  ITEM_PER_PAGE = 5
   def get(page = 1)
     total = @mapper.count
     last_page = (total / ITEM_PER_PAGE).ceil

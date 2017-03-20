@@ -124,6 +124,10 @@ class IndicatorGroup extends React.Component {
                 main: 'rgba(75,75,75,1)',
                 background: 'rgba(75,75,75,0.4)'
             },
+            {
+                main: 'rgba(1,1,1,1)',
+                background: 'rgba(1,1,1,0.4)'
+            },
         ];
         var color_index = 0;
 
