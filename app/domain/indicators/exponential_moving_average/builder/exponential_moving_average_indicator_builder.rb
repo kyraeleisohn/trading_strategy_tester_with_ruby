@@ -1,4 +1,32 @@
 class ExponentialMovingAverageIndicatorBuilder < DomainBuilder
+  def get_12_seconds(tick_count)
+    chart_builder = ChartBuilder.new tick_count
+    chart = chart_builder.get 'EMA12SECONDS'
+
+    time_filter = TimeFilter.new('second', 1)
+    item_list = TimeFilteredFixedSizeArray.new(12, time_filter)
+
+    ExponentialMovingAverageIndicator.new(
+        generate_id,
+        chart,
+        item_list
+    )
+  end
+
+  def get_26_seconds(tick_count)
+    chart_builder = ChartBuilder.new tick_count
+    chart = chart_builder.get 'EMA26SECONDS'
+
+    time_filter = TimeFilter.new('second', 1)
+    item_list = TimeFilteredFixedSizeArray.new(26, time_filter)
+
+    ExponentialMovingAverageIndicator.new(
+        generate_id,
+        chart,
+        item_list
+    )
+  end
+
   def get_100_seconds(tick_count)
     chart_builder = ChartBuilder.new tick_count
     chart = chart_builder.get 'EMA100SECONDS'

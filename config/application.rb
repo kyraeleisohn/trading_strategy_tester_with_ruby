@@ -52,6 +52,8 @@ module TradingStrategyResultAnalytics
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/efficiency_ratio/builder"
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/psar"
     config.autoload_paths << "#{Rails.root}/app/domain/indicators/psar/builder"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/macd"
+    config.autoload_paths << "#{Rails.root}/app/domain/indicators/macd/builder"
     config.autoload_paths << "#{Rails.root}/app/mappers/builder"
     config.autoload_paths << "#{Rails.root}/app/models/trade"
     config.autoload_paths << "#{Rails.root}/app/models/strategy"
