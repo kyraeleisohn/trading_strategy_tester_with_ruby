@@ -26,8 +26,8 @@ class IndicatorListMapper < Mapper
 
     IndicatorListTable.new(
       {
-          :id => domain.id,
-          :indicator_id_list => item_id_list
+        :id                => domain.id,
+        :indicator_id_list => item_id_list
       }
     )
   end

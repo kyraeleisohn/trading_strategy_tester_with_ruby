@@ -12,4 +12,18 @@ class MacdIndicatorBuilder < DomainBuilder
       exponential_moving_average_builder.get_26_seconds(tick_count)
     )
   end
+
+  def get_minutes(tick_count)
+    chart_builder = ChartBuilder.new tick_count
+    chart = chart_builder.get 'MACDMINUTES'
+
+    exponential_moving_average_builder = ExponentialMovingAverageIndicatorBuilder.new
+
+    MacdIndicator.new(
+        generate_id,
+        chart,
+        exponential_moving_average_builder.get_12_minutes(tick_count),
+        exponential_moving_average_builder.get_26_minutes(tick_count)
+    )
+  end
 end

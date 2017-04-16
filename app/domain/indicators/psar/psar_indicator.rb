@@ -2,6 +2,7 @@ class PsarIndicator < Indicator
   def initialize(
     id,
     chart,
+    time_filter,
     default_acceleration = 0.02,
     acceleration_threshold = 0.19,
     maximum_acceleration = 0.2,
@@ -11,6 +12,7 @@ class PsarIndicator < Indicator
   )
     super(id, chart)
 
+    @time_filter = time_filter
     @acceleration = default_acceleration
     @default_acceleration = default_acceleration
     @acceleration_threshold = acceleration_threshold
@@ -25,6 +27,10 @@ class PsarIndicator < Indicator
   end
 
   def enforce(market_state)
+    unless @time_filter.changed market_state.date_time
+      return
+    end
+
     @prices.push market_state
     @lowest_value_indicator.enforce market_state
     @highest_value_indicator.enforce market_state
@@ -120,6 +126,8 @@ class PsarIndicator < Indicator
 
     @extreme_point = @lowest_value_indicator.value
     @acceleration = @default_acceleration
+    @lowest_value_indicator.reset
+    @highest_value_indicator.reset
   end
 
   def upward_trend_switch?
@@ -135,6 +143,8 @@ class PsarIndicator < Indicator
 
     @extreme_point = @highest_value_indicator.value
     @acceleration = @default_acceleration
+    @lowest_value_indicator.reset
+    @highest_value_indicator.reset
   end
 
   def increment_acceleration

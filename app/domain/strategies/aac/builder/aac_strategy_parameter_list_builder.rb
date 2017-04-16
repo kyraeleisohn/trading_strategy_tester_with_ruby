@@ -13,8 +13,6 @@ class AacStrategyParameterListBuilder < StrategyParameterListBuilder
 
   private
   def generate_parameter_list_list
-    [
-      0.001,
-    ]
+    (10..12)
   end
 end
