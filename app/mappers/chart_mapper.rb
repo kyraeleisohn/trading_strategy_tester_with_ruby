@@ -15,7 +15,6 @@ class ChartMapper < Mapper
   def to_table(chart)
     ChartTable.new(
       id: chart.id,
-      mod: chart.mod,
       data: chart.data,
       name: chart.name
     )
@@ -24,7 +23,7 @@ class ChartMapper < Mapper
   def from_table(table)
     Chart.new(
       table.id,
-      table.mod,
+      TimeFilter.new('minute', 1),
       table.data,
       table.name
     )

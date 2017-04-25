@@ -1,7 +1,7 @@
 class LowestValueIndicatorBuilder < DomainBuilder
-  def get(tick_count)
+  def get
     name = 'LOWESTVALUE'
-    chart_builder = ChartBuilder.new tick_count
+    chart_builder = ChartBuilder.new
     chart = chart_builder.get name
 
     LowestValueIndicator.new(

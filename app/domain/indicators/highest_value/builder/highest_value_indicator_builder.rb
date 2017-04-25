@@ -1,7 +1,7 @@
 class HighestValueIndicatorBuilder < DomainBuilder
-  def get(tick_count)
+  def get
     name = 'HIGHESTVALUE'
-    chart_builder = ChartBuilder.new tick_count
+    chart_builder = ChartBuilder.new
     chart = chart_builder.get name
 
     HighestValueIndicator.new(

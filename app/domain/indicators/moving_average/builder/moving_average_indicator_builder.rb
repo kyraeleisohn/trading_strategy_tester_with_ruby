@@ -1,6 +1,6 @@
 class MovingAverageIndicatorBuilder < DomainBuilder
-  def get_100_seconds(tick_count)
-    chart_builder = ChartBuilder.new tick_count
+  def get_100_seconds
+    chart_builder = ChartBuilder.new
     chart = chart_builder.get 'MA100SECONDS'
 
     time_filter = TimeFilter.new('second', 1)

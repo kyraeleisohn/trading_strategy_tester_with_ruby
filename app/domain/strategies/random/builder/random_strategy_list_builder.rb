@@ -5,7 +5,7 @@ class RandomStrategyListBuilder < StrategyListBuilder
     RandomStrategyParameterListBuilder.new
   end
 
-  def get_strategy_builder(tick_count)
-    RandomStrategyBuilder.new tick_count
+  def get_strategy_builder
+    RandomStrategyBuilder.new
   end
 end

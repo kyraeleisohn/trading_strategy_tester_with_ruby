@@ -1,17 +1,17 @@
 class Chart
-  attr_reader :id, :data, :mod, :name
+  attr_reader :id, :data, :name
 
-  def initialize(id, mod, data, name)
+  def initialize(id, time_filter, data, name)
     @id = id
     @count = 0
-    @mod = mod
+    @time_filter = time_filter
     @data = data
     @name = name
   end
 
   def add(datetime, values)
     changed = false
-    if @count == 0 || @count % @mod == 0 then
+    if @time_filter.changed datetime then
       @data.push(
         {
           'label' => datetime,

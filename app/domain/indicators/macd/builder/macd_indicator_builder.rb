@@ -1,6 +1,6 @@
 class MacdIndicatorBuilder < DomainBuilder
-  def get_seconds(tick_count)
-    chart_builder = ChartBuilder.new tick_count
+  def get_seconds
+    chart_builder = ChartBuilder.new
     chart = chart_builder.get 'MACDSECONDS'
 
     exponential_moving_average_builder = ExponentialMovingAverageIndicatorBuilder.new
@@ -8,13 +8,13 @@ class MacdIndicatorBuilder < DomainBuilder
     MacdIndicator.new(
       generate_id,
       chart,
-      exponential_moving_average_builder.get_12_seconds(tick_count),
-      exponential_moving_average_builder.get_26_seconds(tick_count)
+      exponential_moving_average_builder.get_12_seconds,
+      exponential_moving_average_builder.get_26_seconds
     )
   end
 
-  def get_minutes(tick_count)
-    chart_builder = ChartBuilder.new tick_count
+  def get_minutes
+    chart_builder = ChartBuilder.new
     chart = chart_builder.get 'MACDMINUTES'
 
     exponential_moving_average_builder = ExponentialMovingAverageIndicatorBuilder.new
@@ -22,8 +22,8 @@ class MacdIndicatorBuilder < DomainBuilder
     MacdIndicator.new(
         generate_id,
         chart,
-        exponential_moving_average_builder.get_12_minutes(tick_count),
-        exponential_moving_average_builder.get_26_minutes(tick_count)
+        exponential_moving_average_builder.get_12_minutes,
+        exponential_moving_average_builder.get_26_minutes
     )
   end
 end

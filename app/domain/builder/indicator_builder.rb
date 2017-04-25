@@ -1,6 +1,6 @@
 class IndicatorBuilder < DomainBuilder
-  def get(tick_count)
-    chart_builder = ChartBuilder.new tick_count
+  def get
+    chart_builder = ChartBuilder.new
     chart = chart_builder.get 'indicator'
 
     Indicator.new(

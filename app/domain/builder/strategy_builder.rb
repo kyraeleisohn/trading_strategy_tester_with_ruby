@@ -1,20 +1,16 @@
 
 class StrategyBuilder < DomainBuilder
-  def initialize(tick_count)
-    @tick_count = tick_count
-  end
-
   def get(parameter_list)
     trade_handler_builder = TradeHandlerBuilder.new
     trade_handler = trade_handler_builder.get
 
-    chart_builder = ChartBuilder.new @tick_count
+    chart_builder = ChartBuilder.new
     chart = chart_builder.get 'strategy'
 
     indicator_list_builder = get_indicator_list_builder
-    indicator_list = indicator_list_builder.get @tick_count
+    indicator_list = indicator_list_builder.get
 
-    time_filter = TimeFilter.new('second', 1)
+    time_filter = TimeFilter.new('minute', 1)
 
     get_strategy(
         generate_id,
