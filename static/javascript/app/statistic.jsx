@@ -47,6 +47,10 @@ class Statistic extends React.Component {
                         <td>{statistic.profit}</td>
                     </tr>
                     <tr>
+                        <th>Spread cost</th>
+                        <td>{statistic.spread_cost}</td>
+                    </tr>
+                    <tr>
                         <th>Profitability</th>
                         <td>{statistic.profitability}</td>
                     </tr>
