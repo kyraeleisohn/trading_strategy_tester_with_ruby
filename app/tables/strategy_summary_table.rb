@@ -21,4 +21,5 @@ class StrategySummaryTable
   field :one_minute_trade_count, type: Integer
   field :one_minute_trade_profit, type: Float
   field :one_minute_trade_wins, type: Float
+  field :spread_cost, type: Float
 end

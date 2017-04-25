@@ -24,6 +24,10 @@ class Trade
     @opening_state.bid_price.to_f - closing_state.ask_price.to_f
   end
 
+  def spread_cost
+    @opening_state.ask_price.to_f - @opening_state.bid_price.to_f
+  end
+
   def final_profit
     profit @closing_state
   end

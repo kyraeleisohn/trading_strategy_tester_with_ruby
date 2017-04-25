@@ -46,7 +46,8 @@ class StrategyStatisticMapper < Mapper
         get_average_trade_length(summary),
         summary.one_minute_trade_count,
         summary.one_minute_trade_profit,
-        get_one_minute_trade_win_percentage(summary)
+        get_one_minute_trade_win_percentage(summary),
+        summary.spread_cost
     )
   end
 

@@ -19,7 +19,9 @@ class ClosedTradeSummary
     :one_minute_trade_count,
     :one_minute_trade_profit,
     :one_minute_trade_wins,
+    :spread_cost
   )
+
   def initialize(
     id,
     strategy_id,
@@ -38,7 +40,8 @@ class ClosedTradeSummary
     sum_trade_length = 0,
     one_minute_trade_count = 0,
     one_minute_trade_profit = 0,
-    one_minute_trade_wins = 0
+    one_minute_trade_wins = 0,
+    spread_cost = 0
   )
     @id = id
     @strategy_id = strategy_id
@@ -58,16 +61,20 @@ class ClosedTradeSummary
     @one_minute_trade_count = one_minute_trade_count
     @one_minute_trade_profit = one_minute_trade_profit
     @one_minute_trade_wins = one_minute_trade_wins
+    @spread_cost = spread_cost
   end
 
   def add(closed_trade)
     @strategy_id = closed_trade.strategy_id
+
     profit = closed_trade.final_profit
 
     add_profit profit
     add_profitability profit
     add_loss_or_win profit
     calculate_max_win_or_loss profit
+
+    add_spread_cost closed_trade.spread_cost
 
     add_buy_or_sell_count closed_trade
 
@@ -78,6 +85,10 @@ class ClosedTradeSummary
   end
 
   private
+
+  def add_spread_cost(spread_cost)
+    @spread_cost += spread_cost
+  end
 
   def add_profit(profit)
     @profit += profit
@@ -128,10 +139,10 @@ class ClosedTradeSummary
   end
 
   def add_trade_length(closed_trade, profit)
-    trade_length = (closed_trade.opening_state.date_time.to_time - closed_trade.closing_state.date_time.to_time).to_i
-    @sum_trade_length += trade_length
+    trade_length = closed_trade.closing_state.date_time.to_time - closed_trade.opening_state.date_time.to_time
+    @sum_trade_length += trade_length.to_i
 
-    if trade_length < 60
+    if trade_length < 1.minutes
       @one_minute_trade_count += 1
       @one_minute_trade_profit += profit
       if is_win profit

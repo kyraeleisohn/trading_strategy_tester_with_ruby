@@ -15,7 +15,8 @@ class StrategyStatistic
     :average_trade_length,
     :one_minute_trade_count,
     :one_minute_trade_profit,
-    :one_minute_trade_win_percentage
+    :one_minute_trade_win_percentage,
+    :spread_cost
   )
 
   def initialize(
@@ -33,7 +34,8 @@ class StrategyStatistic
     average_trade_length,
     one_minute_trade_count,
     one_minute_trade_profit,
-    one_minute_trade_win_percentage
+    one_minute_trade_win_percentage,
+    spread_cost
   )
     @id = id
     @profit = profit
@@ -50,5 +52,6 @@ class StrategyStatistic
     @one_minute_trade_count = one_minute_trade_count
     @one_minute_trade_profit = one_minute_trade_profit
     @one_minute_trade_win_percentage = one_minute_trade_win_percentage
+    @spread_cost = spread_cost
   end
 end
