@@ -52,6 +52,7 @@ class TradeList extends React.Component{
                     <thead>
                     <tr>
                         <th>Trade type</th>
+                        <th>Profit</th>
                         <th>Opening date</th>
                         <th>Closing date</th>
                         <th>Opening price</th>

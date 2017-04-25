@@ -24,11 +24,27 @@ class Trade
     @opening_state.bid_price.to_f - closing_state.ask_price.to_f
   end
 
+  def final_profit
+    profit @closing_state
+  end
+
   def spread_cost
     @opening_state.ask_price.to_f - @opening_state.bid_price.to_f
   end
 
-  def final_profit
-    profit @closing_state
+  def opening_price
+    is_buy ? @opening_state.ask_price.to_f : @opening_state.bid_price.to_f
+  end
+
+  def closing_price
+    is_buy ? @closing_state.bid_price.to_f : @closing_state.ask_price.to_f
+  end
+
+  def opening_date_time
+    @opening_state.date_time
+  end
+
+  def closing_date_time
+    @closing_state.date_time
   end
 end

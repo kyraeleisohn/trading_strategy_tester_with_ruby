@@ -6,12 +6,13 @@ class Trade extends React.Component {
         return (
             <tr>
                 <td>{trade.type}</td>
-                <td>{trade.opening_state_date_time}</td>
-                <td>{trade.closing_state_date_time}</td>
-                <td>{trade.opening_state_ask_price}</td>
-                <td>{trade.closing_state_ask_price}</td>
-                <td>{trade.opening_state_ask_volume}</td>
-                <td>{trade.closing_state_ask_volume}</td>
+                <td>{trade.profit}</td>
+                <td>{trade.opening_date_time}</td>
+                <td>{trade.closing_date_time}</td>
+                <td>{trade.opening_price}</td>
+                <td>{trade.closing_price}</td>
+                <td>{trade.opening_ask_volume}</td>
+                <td>{trade.closing_ask_volume}</td>
             </tr>
         );
     }
