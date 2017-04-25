@@ -51,6 +51,7 @@ class StrategySummaryMapper < Mapper
       one_minute_trade_count: summary.one_minute_trade_count,
       one_minute_trade_profit: summary.one_minute_trade_profit,
       one_minute_trade_wins: summary.one_minute_trade_wins,
+      spread_cost: summary.spread_cost
     )
   end
 
@@ -73,7 +74,8 @@ class StrategySummaryMapper < Mapper
         table.sum_trade_length,
         table.one_minute_trade_count,
         table.one_minute_trade_profit,
-        table.one_minute_trade_wins
+        table.one_minute_trade_wins,
+        table.spread_cost
     )
   end
 end
