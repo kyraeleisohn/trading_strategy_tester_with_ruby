@@ -2,10 +2,10 @@ var webpack = require('webpack');
 var path = require('path');
 
 var BUILD_DIR = path.resolve(__dirname, '../../app/assets/javascripts');
-var APP_DIR = path.resolve(__dirname, 'app');
+var APP_DIR = path.resolve(__dirname, 'app2');
 
 var config = {
-    entry: APP_DIR + '/index.jsx',
+    entry: ["babel-polyfill", APP_DIR + '/main.js'],
     output: {
         path: BUILD_DIR,
         filename: 'bundle.js'
@@ -15,9 +15,19 @@ var config = {
             {
                 test : /\.jsx?/,
                 include : APP_DIR,
-                loader : 'babel'
+                loader : 'babel-loader'
             }
-        ]
+        ],
+        rules: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                use: [
+                    "babel-loader",
+                    "eslint-loader",
+                ],
+            }
+        ],
     }
 };
 
