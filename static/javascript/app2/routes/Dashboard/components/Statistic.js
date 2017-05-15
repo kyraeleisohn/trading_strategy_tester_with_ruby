@@ -1,19 +1,42 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * Statistic.
+ */
 class Statistic extends Component {
     /**
-     * @type {{exchange: (*)}}
+     * @type {{statistic: (*)}}
      */
-    static propTypes = {
-        strategy: PropTypes.shape({
-            id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            parameter_list: PropTypes.object.isRequired,
-        }).isRequired,
-    };
+     static propTypes = {
+         statistic: PropTypes.shape({
+             profit: PropTypes.number,
+             spread_cost: PropTypes.number,
+             profitability: PropTypes.number,
+             trade_count: PropTypes.integer,
+             average_loss: PropTypes.number,
+             average_win: PropTypes.number,
+             maximum_loss: PropTypes.number,
+             maximum_win: PropTypes.number,
+             buy_percentage: PropTypes.number,
+             buy_win_count: PropTypes.number,
+             sell_win_count: PropTypes.number,
+             average_trade_length: PropTypes.string,
+             one_minute_trade_count: PropTypes.number,
+             one_minute_trade_profit: PropTypes.number,
+             one_minute_trade_win_percentage: PropTypes.string,
+         }),
+     };
 
+    /**
+     * @return {XML}
+     */
     render() {
         let statistic = this.props.statistic;
+
+        if (typeof statistic === 'undefined') {
+            return null;
+        }
 
         return (
             <div className="statistic col-md-6">
@@ -88,6 +111,3 @@ class Statistic extends Component {
 }
 
 export default Statistic;
-
-
-

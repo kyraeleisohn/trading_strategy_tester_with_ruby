@@ -1,24 +1,13 @@
 import React from 'react';
 import {Line} from 'react-chartjs-2';
 
-class BalanceChart extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            labels : [],
-            data_sets : {
-                floating_value : [],
-                closed_value: []
-            }
-        };
-    }
-
-    dataSet(label, data, color, backgoundColor) {
+class BalanceChart extends Component {
+    dataSet(label, data, color, backgroundColor) {
         return {
             label: label,
             fill: false,
             lineTension: 0.1,
-            backgroundColor: backgoundColor,
+            backgroundColor: backgroundColor,
             borderColor: color,
             borderCapStyle: 'butt',
             borderDash: [],
@@ -35,27 +24,6 @@ class BalanceChart extends React.Component {
             pointHitRadius: 10,
             data: data
         };
-    }
-
-    loadDataFromServer() {
-        $.ajax(
-            {
-                url: this.props.url + '/' + this.props.dataId ,
-                dataType: 'json',
-                cache: false,
-                success: function(data) {
-                    this.setState(data);
-                }.bind(this),
-                error: function(xhr, status, err) {
-                    console.error(this.props.url, status, err.toString());
-                }.bind(this)
-            }
-        );
-    }
-
-    componentDidMount() {
-        this.loadDataFromServer();
-        setInterval(this.loadDataFromServer.bind(this), this.props.pollInterval);
     }
 
     render() {

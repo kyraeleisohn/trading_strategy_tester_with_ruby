@@ -2,6 +2,7 @@ import {
     STRATEGY_LIST_RELOAD_REQUEST,
     STRATEGY_LIST_RELOAD_SUCCESS,
 } from './actions';
+import strategy from './strategy';
 
 /**
  * @param {object} state
@@ -31,7 +32,7 @@ function strategyList(
                 state,
                 {
                     isFetching: false,
-                    items: action.strategyList.data,
+                    items: action.strategyList.data.map(strategy),
                 }
             );
         default:

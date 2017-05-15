@@ -5,7 +5,7 @@ class AabStrategyListBuilder < StrategyListBuilder
     AabStrategyParameterListBuilder.new
   end
 
-  def get_strategy_builder(tick_count)
-    AabStrategyBuilder.new tick_count
+  def get_strategy_builder
+    AabStrategyBuilder.new
   end
 end

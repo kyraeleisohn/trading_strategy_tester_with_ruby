@@ -1,16 +1,30 @@
-import fetch from 'isomorphic-fetch';
-
 export const EXCHANGE_LIST_RELOAD_REQUEST = 'EXCHANGE_LIST_RELOAD_REQUEST';
 export const EXCHANGE_LIST_RELOAD_SUCCESS = 'EXCHANGE_LIST_RELOAD_SUCCESS';
+export const EXCHANGE_LIST_RELOAD_FAILED = 'EXCHANGE_LIST_RELOAD_FAILED';
+
 export const STRATEGY_LIST_RELOAD_REQUEST = 'STRATEGY_LIST_RELOAD_REQUEST';
 export const STRATEGY_LIST_RELOAD_SUCCESS = 'STRATEGY_LIST_RELOAD_SUCCESS';
+export const STRATEGY_LIST_RELOAD_FAILED = 'STRATEGY_LIST_RELOAD_FAILED';
+
+export const STATISTIC_RELOAD_REQUEST = 'STATISTIC_RELOAD_REQUEST';
+export const STATISTIC_RELOAD_SUCCESS = 'STATISTIC_RELOAD_SUCCESS';
+export const STATISTIC_RELOAD_FAILED = 'STATISTIC_RELOAD_FAILED';
 
 /**
  * @return {{type: string}}
  */
-function exchangeListReloadRequest() {
+export function exchangeListReloadRequest() {
     return {
         type: EXCHANGE_LIST_RELOAD_REQUEST,
+    };
+}
+
+/**
+ * @return {{type: string}}
+ */
+export function exchangeListReloadFailed() {
+    return {
+        type: EXCHANGE_LIST_RELOAD_FAILED,
     };
 }
 
@@ -19,7 +33,7 @@ function exchangeListReloadRequest() {
  *
  * @return {{type: string}}
  */
-function exchangeListReloadSuccess(json) {
+export function exchangeListReloadSuccess(json) {
     return {
         type: EXCHANGE_LIST_RELOAD_SUCCESS,
         exchangeList: json,
@@ -27,25 +41,20 @@ function exchangeListReloadSuccess(json) {
 }
 
 /**
- * @return {Function}
+ * @return {{type: string}}
  */
-function fetchExchangeList() {
-    return function(dispatch) {
-        dispatch(exchangeListReloadRequest());
-
-        return fetch('/exchange_statuses?q=status:processing')
-            .then((response) => response.json())
-            .then((json) => dispatch(exchangeListReloadSuccess(json)))
-        ;
+export function strategyListReloadRequest() {
+    return {
+        type: STRATEGY_LIST_RELOAD_REQUEST,
     };
 }
 
 /**
  * @return {{type: string}}
  */
-function strategyListReloadRequest() {
+export function strategyListReloadFailed() {
     return {
-        type: STRATEGY_LIST_RELOAD_REQUEST,
+        type: STRATEGY_LIST_RELOAD_FAILED,
     };
 }
 
@@ -54,7 +63,7 @@ function strategyListReloadRequest() {
  *
  * @return {{type: string}}
  */
-function strategyListReloadSuccess(json) {
+export function strategyListReloadSuccess(json) {
     return {
         type: STRATEGY_LIST_RELOAD_SUCCESS,
         strategyList: json,
@@ -62,36 +71,39 @@ function strategyListReloadSuccess(json) {
 }
 
 /**
- * @return {Function}
+ * @param {string} id
+ *
+ * @return {{type: string}}
  */
-function fetchStrategyList() {
-    return function(dispatch) {
-        dispatch(strategyListReloadRequest());
-
-        return fetch('/strategies')
-            .then((response) => response.json())
-            .then((json) => dispatch(strategyListReloadSuccess(json)))
-        ;
+export function statisticReloadRequest(id) {
+    return {
+        type: STATISTIC_RELOAD_REQUEST,
+        id: id,
     };
 }
 
 /**
- * @return {Function}
+ * @param {string} id
+ *
+ * @return {{type: string}}
  */
-export function fetchApplication() {
-    return function(dispatch) {
-        dispatch(fetchExchangeList());
-        dispatch(fetchStrategyList());
+export function statisticReloadFailed(id) {
+    return {
+        type: STATISTIC_RELOAD_REQUEST,
+        id: id,
     };
 }
 
 /**
- * @return {Function}
+ * @param {string} id
+ * @param {{type: json}} json
+ *
+ * @return {{type: string}}
  */
-export function startTimer() {
-    return function(dispatch) {
-        setInterval(() => {
-            dispatch(fetchApplication());
-        }, 10000);
+export function statisticReloadSuccess(id, json) {
+    return {
+        type: STATISTIC_RELOAD_SUCCESS,
+        id: id,
+        statistic: json,
     };
 }
