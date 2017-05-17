@@ -11,6 +11,9 @@ import {
     statisticReloadRequest,
     statisticReloadSuccess,
     statisticReloadFailed,
+    tradeListReloadRequest,
+    tradeListReloadSuccess,
+    tradeListReloadFailed,
 } from '../routes/Dashboard/modules/actions';
 
 /**
@@ -80,10 +83,40 @@ function* pollStatistic(id) {
 /**
  *
  */
+function* pollTradeListList() {
+    let strategyList = yield select(getStrategyList);
+    if (
+        Object.prototype.toString.call(strategyList.items) !== '[object Array]'
+    ) {
+        return;
+    }
+
+    yield strategyList.items.map((strategy) => {
+        return pollTradeList(strategy.id);
+    });
+}
+
+/**
+ * @param {string} id
+ */
+function* pollTradeList(id) {
+    try {
+        yield put(tradeListReloadRequest(id));
+        const response = yield call(Api.fetchTradeList, id);
+        yield put(tradeListReloadSuccess(id, response));
+    } catch (error) {
+        yield put(tradeListReloadFailed(id));
+    }
+}
+
+/**
+ *
+ */
 function* pollApplication() {
     yield call(pollExchangeList);
     yield call(pollStrategyList);
     yield call(pollStatisticList);
+    yield call(pollTradeListList);
 }
 
 /**

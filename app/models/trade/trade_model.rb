@@ -6,6 +6,7 @@ class TradeModel
   protected
   def get_trade_as_array(trade)
     {
+        :id                 => trade.id,
         :type               => trade.is_buy ? 'buy' : 'sell',
         :profit             => trade.final_profit,
         :opening_date_time  => trade.opening_date_time,

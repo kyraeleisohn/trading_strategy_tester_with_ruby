@@ -6,6 +6,10 @@ export const STRATEGY_LIST_RELOAD_REQUEST = 'STRATEGY_LIST_RELOAD_REQUEST';
 export const STRATEGY_LIST_RELOAD_SUCCESS = 'STRATEGY_LIST_RELOAD_SUCCESS';
 export const STRATEGY_LIST_RELOAD_FAILED = 'STRATEGY_LIST_RELOAD_FAILED';
 
+export const TRADE_LIST_RELOAD_REQUEST = 'TRADE_LIST_RELOAD_REQUEST';
+export const TRADE_LIST_RELOAD_SUCCESS = 'TRADE_LIST_RELOAD_SUCCESS';
+export const TRADE_LIST_RELOAD_FAILED = 'TRADE_LIST_RELOAD_FAILED';
+
 export const STATISTIC_RELOAD_REQUEST = 'STATISTIC_RELOAD_REQUEST';
 export const STATISTIC_RELOAD_SUCCESS = 'STATISTIC_RELOAD_SUCCESS';
 export const STATISTIC_RELOAD_FAILED = 'STATISTIC_RELOAD_FAILED';
@@ -105,5 +109,44 @@ export function statisticReloadSuccess(id, json) {
         type: STATISTIC_RELOAD_SUCCESS,
         id: id,
         statistic: json,
+    };
+}
+
+
+/**
+ * @param {string} id
+ *
+ * @return {{type: string}}
+ */
+export function tradeListReloadRequest(id) {
+    return {
+        type: TRADE_LIST_RELOAD_REQUEST,
+        id: id,
+    };
+}
+
+/**
+ * @param {string} id
+ *
+ * @return {{type: string}}
+ */
+export function tradeListReloadFailed(id) {
+    return {
+        type: TRADE_LIST_RELOAD_FAILED,
+        id: id,
+    };
+}
+
+/**
+ * @param {string} id
+ * @param {{type: json}} json
+ *
+ * @return {{type: string}}
+ */
+export function tradeListReloadSuccess(id, json) {
+    return {
+        type: TRADE_LIST_RELOAD_SUCCESS,
+        id: id,
+        tradeList: json,
     };
 }

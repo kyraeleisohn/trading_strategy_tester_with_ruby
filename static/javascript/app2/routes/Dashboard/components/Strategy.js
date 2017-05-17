@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ActiveStatistic from '../containers/ActiveStatistic';
+import ActiveTradeList from '../containers/ActiveTradeList';
 
 /**
  * Strategy.
@@ -47,6 +48,7 @@ class Strategy extends Component {
                         </div>
                     </div>
                     <ActiveStatistic dataId={this.props.strategy.id}/>
+                    <ActiveTradeList dataId={this.props.strategy.id}/>
                 </div>
             </div>
         );

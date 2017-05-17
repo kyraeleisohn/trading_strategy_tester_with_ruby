@@ -32,4 +32,15 @@ export default class Api {
             .then((response) => response.json())
         ;
     };
+
+    /**
+     * @param {string} id
+     *
+     * @return {*}
+     */
+    static fetchTradeList(id) {
+        return fetch('/strategies/' + id + '/trades')
+            .then((response) => response.json())
+        ;
+    };
 }
