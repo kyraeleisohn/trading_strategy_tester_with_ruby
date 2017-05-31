@@ -1,10 +1,5 @@
-class GetAllExchangeStatusModel < ExchangeStatusModel
-  def get(query_string)
-    @mapper.find(get_search_request(query_string)).collect {|exchange_status| get_as_array exchange_status}
-  end
-
-  private
-  def get_search_request(query_string)
+class ExchangeStatusSearchRequestBuilder
+  def build(query_string)
     search_request = ExchangeStatusSearchRequest.new
 
     if query_string
@@ -14,6 +9,7 @@ class GetAllExchangeStatusModel < ExchangeStatusModel
     search_request
   end
 
+  private
   def add_status_filter(search_request, query_string)
     value = get_filter_value(query_string, 'status')
 

@@ -43,4 +43,26 @@ export default class Api {
             .then((response) => response.json())
         ;
     };
+
+    /**
+     * @param {string} id
+     *
+     * @return {*}
+     */
+    static fetchIndicatorList(id) {
+        return fetch('/strategy_indicator_lists/' + id)
+            .then((response) => response.json())
+        ;
+    };
+
+    /**
+     * @param {string} id
+     *
+     * @return {*}
+     */
+    static fetchIndicator(id) {
+        return fetch('/strategy_indicators/' + id)
+            .then((response) => response.json())
+        ;
+    };
 }

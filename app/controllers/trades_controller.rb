@@ -1,35 +1,14 @@
 class TradesController < ApplicationController
   def index
-    model = GetAllTradeModel.new(
-      TradeMapper.new(
-        TradeRepository.new,
-        MarketStateMapper.new,
-        TradeFactory.new
-      )
-    )
-    @get_all_trade = model.get(params[:strategy_id], params[:page].to_i, params[:item_per_page].to_i)
-
-    respond_to do |format|
-      format.json { render json: @get_all_trade }
-      format.html
-    end
+    render json: service.index(params[:strategy_id], params[:page].to_i)
   end
 
   def show
-    mapper_builder = TradeMapperBuilder.new
-    model = GetTradeModel.new(
-      mapper_builder.get
-    )
-    render json: model.get(params[:strategy_id], params[:id])
+    render json: service.show(params[:id])
   end
 
   private
-    def get_trade_params
-      params.require(:id)
-      params.require(:opening_state)
-      params.require(:closing_state)
-      params.require(:strategy_id)
-
-      params
-    end
+  def service
+    TradeServiceBuilder.new.get
+  end
 end

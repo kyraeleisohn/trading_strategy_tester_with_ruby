@@ -14,6 +14,14 @@ export const STATISTIC_RELOAD_REQUEST = 'STATISTIC_RELOAD_REQUEST';
 export const STATISTIC_RELOAD_SUCCESS = 'STATISTIC_RELOAD_SUCCESS';
 export const STATISTIC_RELOAD_FAILED = 'STATISTIC_RELOAD_FAILED';
 
+export const INDICATOR_LIST_RELOAD_REQUEST = 'INDICATOR_LIST_RELOAD_REQUEST';
+export const INDICATOR_LIST_RELOAD_SUCCESS = 'INDICATOR_LIST_RELOAD_SUCCESS';
+export const INDICATOR_LIST_RELOAD_FAILED = 'INDICATOR_LIST_RELOAD_FAILED';
+
+export const INDICATOR_RELOAD_REQUEST = 'INDICATOR_RELOAD_REQUEST';
+export const INDICATOR_RELOAD_SUCCESS = 'INDICATOR_RELOAD_SUCCESS';
+export const INDICATOR_RELOAD_FAILED = 'INDICATOR_RELOAD_FAILED';
+
 /**
  * @return {{type: string}}
  */
@@ -148,5 +156,87 @@ export function tradeListReloadSuccess(id, json) {
         type: TRADE_LIST_RELOAD_SUCCESS,
         id: id,
         tradeList: json,
+    };
+}
+
+/**
+ * @param {string} id
+ *
+ * @return {{type: string}}
+ */
+export function indicatorListReloadRequest(id) {
+    return {
+        type: INDICATOR_LIST_RELOAD_REQUEST,
+        id: id,
+    };
+}
+
+/**
+ * @param {string} id
+ *
+ * @return {{type: string}}
+ */
+export function indicatorListReloadFailed(id) {
+    return {
+        type: INDICATOR_LIST_RELOAD_FAILED,
+        id: id,
+    };
+}
+
+/**
+ * @param {string} id
+ * @param {{type: json}} json
+ *
+ * @return {{type: string}}
+ */
+export function indicatorListReloadSuccess(id, json) {
+    return {
+        type: INDICATOR_LIST_RELOAD_SUCCESS,
+        id: id,
+        indicatorList: json,
+    };
+}
+
+/**
+ * @param {string} indicatorListId
+ * @param {string} id
+ *
+ * @return {{type: string}}
+ */
+export function indicatorReloadRequest(indicatorListId, id) {
+    return {
+        type: INDICATOR_RELOAD_REQUEST,
+        indicatorListId: indicatorListId,
+        id: id,
+    };
+}
+
+/**
+ * @param {string} indicatorListId
+ * @param {string} id
+ *
+ * @return {{type: string}}
+ */
+export function indicatorReloadFailed(indicatorListId, id) {
+    return {
+        type: INDICATOR_RELOAD_FAILED,
+        indicatorListId: indicatorListId,
+        id: id,
+    };
+}
+
+/**
+ * @param {string} indicatorListId
+ * @param {string} id
+ * @param {{type: json}} json
+ *
+ * @return {{type: string}}
+ */
+export function indicatorReloadSuccess(indicatorListId, id, json) {
+    return {
+        type: INDICATOR_RELOAD_SUCCESS,
+        indicatorListId: indicatorListId,
+        id: id,
+        indicator: json,
     };
 }

@@ -1,15 +1,10 @@
 class ExchangeStatusesController < ApplicationController
   def index
-    model = GetAllExchangeStatusModel.new(mapper)
-
-    @exchange_status_list = model.get(params[:q])
-
-    render json: @exchange_status_list
+    render json: service.index(params[:q])
   end
 
   private
-  def mapper
-    exchange_status_mapper_builder = ExchangeStatusMapperBuilder.new
-    exchange_status_mapper_builder.get
+  def service
+    ExchangeStatusServiceBuilder.new.get
   end
 end

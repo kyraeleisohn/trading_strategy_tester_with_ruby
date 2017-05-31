@@ -1,5 +1,5 @@
 import {delay} from 'redux-saga';
-import {put, call, select} from 'redux-saga/effects';
+import {put, call, select, takeEvery, all} from 'redux-saga/effects';
 import Api from '../api/Api';
 import {
     exchangeListReloadRequest,
@@ -14,6 +14,13 @@ import {
     tradeListReloadRequest,
     tradeListReloadSuccess,
     tradeListReloadFailed,
+    indicatorListReloadRequest,
+    indicatorListReloadSuccess,
+    indicatorListReloadFailed,
+    indicatorReloadRequest,
+    indicatorReloadSuccess,
+    indicatorReloadFailed,
+    INDICATOR_LIST_RELOAD_SUCCESS,
 } from '../routes/Dashboard/modules/actions';
 
 /**
@@ -112,19 +119,83 @@ function* pollTradeList(id) {
 /**
  *
  */
+function* pollIndicatorListList() {
+    let strategyList = yield select(getStrategyList);
+    if (
+        Object.prototype.toString.call(strategyList.items) !== '[object Array]'
+    ) {
+        return;
+    }
+
+    yield strategyList.items.map((strategy) => {
+        return pollIndicatorList(strategy.indicator_list_id);
+    });
+}
+
+/**
+ * @param {string} id
+ */
+function* pollIndicatorList(id) {
+    try {
+        yield put(indicatorListReloadRequest(id));
+        const response = yield call(Api.fetchIndicatorList, id);
+        yield put(indicatorListReloadSuccess(id, response));
+    } catch (error) {
+        yield put(indicatorListReloadFailed(id));
+    }
+}
+
+/**
+ *
+ */
+function* watchFetchProducts() {
+    yield takeEvery(INDICATOR_LIST_RELOAD_SUCCESS, pollIndicators);
+}
+
+/**
+ * @param {object} action
+ */
+function* pollIndicators(action) {
+    yield action.indicatorList.item_id_list.map((indicatorId) => {
+        return pollIndicator(action.id, indicatorId);
+    });
+}
+
+/**
+ *
+ * @param {string} indicatorListId
+ * @param {string} id
+ */
+function* pollIndicator(indicatorListId, id) {
+    try {
+        yield put(indicatorReloadRequest(indicatorListId, id));
+        const response = yield call(Api.fetchIndicator, id);
+        yield put(indicatorReloadSuccess(indicatorListId, id, response));
+    } catch (error) {
+        yield put(indicatorReloadFailed(id));
+    }
+}
+
+/**
+ *
+ */
 function* pollApplication() {
-    yield call(pollExchangeList);
-    yield call(pollStrategyList);
-    yield call(pollStatisticList);
-    yield call(pollTradeListList);
+    while (true) {
+        yield call(pollExchangeList);
+        yield call(pollStrategyList);
+        yield call(pollStatisticList);
+        yield call(pollTradeListList);
+        yield call(pollIndicatorListList);
+        yield delay(20000);
+    }
 }
 
 /**
  * Root saga.
  */
 export default function* sagas() {
-    while (true) {
-        yield call(pollApplication);
-        yield delay(20000);
-    }
+    yield all([
+        call(watchFetchProducts),
+        call(pollApplication),
+    ]);
 }

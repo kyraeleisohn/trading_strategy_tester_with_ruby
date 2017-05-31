@@ -6,7 +6,7 @@ class IndicatorListModel
   protected
   def get_as_array(domain)
     {
-        :id => domain.id,
+        :id           => domain.id,
         :item_id_list => domain.get_item_id_list,
     }
   end

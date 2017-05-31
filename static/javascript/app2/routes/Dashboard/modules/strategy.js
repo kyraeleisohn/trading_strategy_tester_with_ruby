@@ -8,5 +8,6 @@ export default function strategy(strategy) {
         id: strategy.id,
         name: strategy.name,
         parameter_list: JSON.stringify(strategy.parameter_list),
+        indicator_list_id: strategy.indicator_list_id,
     };
 }

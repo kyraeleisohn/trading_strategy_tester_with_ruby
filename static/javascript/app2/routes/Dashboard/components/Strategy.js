@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import ActiveStatistic from '../containers/ActiveStatistic';
 import ActiveTradeList from '../containers/ActiveTradeList';
+import ActiveIndicatorGroup from '../containers/ActiveIndicatorGroup';
 
 /**
  * Strategy.
@@ -15,6 +16,7 @@ class Strategy extends Component {
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
             parameter_list: PropTypes.string.isRequired,
+            indicator_list_id: PropTypes.string.isRequired,
         }).isRequired,
     };
 
@@ -47,8 +49,15 @@ class Strategy extends Component {
                             </table>
                         </div>
                     </div>
-                    <ActiveStatistic dataId={this.props.strategy.id}/>
-                    <ActiveTradeList dataId={this.props.strategy.id}/>
+                    <ActiveStatistic
+                        dataId={this.props.strategy.id}
+                    />
+                    <ActiveIndicatorGroup
+                        dataId={this.props.strategy.indicator_list_id}
+                    />
+                    <ActiveTradeList
+                        dataId={this.props.strategy.id}
+                    />
                 </div>
             </div>
         );
