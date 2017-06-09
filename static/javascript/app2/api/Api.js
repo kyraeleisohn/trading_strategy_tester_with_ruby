@@ -65,4 +65,15 @@ export default class Api {
             .then((response) => response.json())
         ;
     };
+
+    /**
+     * @param {string} id
+     *
+     * @return {*}
+     */
+    static fetchChart(id) {
+        return fetch('/strategy_charts/' + id)
+            .then((response) => response.json())
+        ;
+    };
 }

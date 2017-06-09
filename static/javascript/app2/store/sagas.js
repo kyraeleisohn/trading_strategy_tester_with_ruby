@@ -1,5 +1,5 @@
 import {delay} from 'redux-saga';
-import {put, call, select, takeEvery, all} from 'redux-saga/effects';
+import {put, call, select} from 'redux-saga/effects';
 import Api from '../api/Api';
 import {
     exchangeListReloadRequest,
@@ -14,13 +14,9 @@ import {
     tradeListReloadRequest,
     tradeListReloadSuccess,
     tradeListReloadFailed,
-    indicatorListReloadRequest,
-    indicatorListReloadSuccess,
-    indicatorListReloadFailed,
-    indicatorReloadRequest,
-    indicatorReloadSuccess,
-    indicatorReloadFailed,
-    INDICATOR_LIST_RELOAD_SUCCESS,
+    chartReloadRequest,
+    chartReloadSuccess,
+    chartReloadFailed,
 } from '../routes/Dashboard/modules/actions';
 
 /**
@@ -128,51 +124,52 @@ function* pollIndicatorListList() {
     }
 
     yield strategyList.items.map((strategy) => {
-        return pollIndicatorList(strategy.indicator_list_id);
+        return pollChartList(strategy.indicator_chart_id_list);
     });
 }
 
 /**
- * @param {string} id
+ *
  */
-function* pollIndicatorList(id) {
-    try {
-        yield put(indicatorListReloadRequest(id));
-        const response = yield call(Api.fetchIndicatorList, id);
-        yield put(indicatorListReloadSuccess(id, response));
-    } catch (error) {
-        yield put(indicatorListReloadFailed(id));
+function* pollBalanceList() {
+    let strategyList = yield select(getStrategyList);
+    if (
+        Object.prototype.toString.call(strategyList.items) !== '[object Array]'
+    ) {
+        return;
     }
+
+    yield strategyList.items.map((strategy) => {
+        return pollChart(strategy.chart_id);
+    });
 }
 
-/**
- *
- */
-function* watchFetchProducts() {
-    yield takeEvery(INDICATOR_LIST_RELOAD_SUCCESS, pollIndicators);
-}
 
 /**
- * @param {object} action
+ * @param {Array} chartIdList
  */
-function* pollIndicators(action) {
-    yield action.indicatorList.item_id_list.map((indicatorId) => {
-        return pollIndicator(action.id, indicatorId);
+function* pollChartList(chartIdList) {
+    if (
+        Object.prototype.toString.call(chartIdList) !== '[object Array]'
+    ) {
+        return;
+    }
+
+    yield chartIdList.map((chartId) => {
+        return pollChart(chartId);
     });
 }
 
 /**
- *
- * @param {string} indicatorListId
  * @param {string} id
  */
-function* pollIndicator(indicatorListId, id) {
+function* pollChart(id) {
     try {
-        yield put(indicatorReloadRequest(indicatorListId, id));
-        const response = yield call(Api.fetchIndicator, id);
-        yield put(indicatorReloadSuccess(indicatorListId, id, response));
+        yield put(chartReloadRequest(id));
+        const response = yield call(Api.fetchChart, id);
+        yield put(chartReloadSuccess(id, response));
     } catch (error) {
-        yield put(indicatorReloadFailed(id));
+        yield put(chartReloadFailed(id));
     }
 }
 
@@ -186,6 +183,7 @@ function* pollApplication() {
         yield call(pollStatisticList);
         yield call(pollTradeListList);
         yield call(pollIndicatorListList);
+        yield call(pollBalanceList);
         yield delay(20000);
     }
 }
@@ -194,8 +192,5 @@ function* pollApplication() {
  * Root saga.
  */
 export default function* sagas() {
-    yield all([
-        call(watchFetchProducts),
-        call(pollApplication),
-    ]);
+    yield call(pollApplication);
 }

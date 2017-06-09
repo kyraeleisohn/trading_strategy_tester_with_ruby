@@ -13,7 +13,9 @@ class StrategyList extends Component {
         strategyList: PropTypes.arrayOf(PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
+            chart_id: PropTypes.string.isRequired,
             parameter_list: PropTypes.string.isRequired,
+            indicator_chart_id_list: PropTypes.array.isRequired,
         }).isRequired).isRequired,
     };
 

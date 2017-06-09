@@ -12,17 +12,21 @@ class IndicatorGroup extends Component {
     static propTypes = {
         indicatorGroup: PropTypes.arrayOf(
             PropTypes.shape({
-                title: PropTypes.string.isRequired,
-                dataSet: PropTypes.array.isRequired,
-                labels: PropTypes.array.isRequired,
-            })
+                data: PropTypes.shape({
+                    name: PropTypes.string.isRequired,
+                    data_sets: PropTypes.shape({
+                        value: PropTypes.array.isRequired,
+                    }),
+                    labels: PropTypes.array.isRequired,
+                }),
+            }),
         ).isRequired,
     };
 
     /**
      * @type {[*]}
      */
-    static colors = [
+    colors = [
         {
             main: 'rgba(75,192,192,1)',
             background: 'rgba(75,192,192,0.4)',
@@ -81,7 +85,7 @@ class IndicatorGroup extends Component {
      *  data: *
      * }}
      */
-    static createDataSet(label, data, color, backgroundColor) {
+     createDataSet(label, data, color, backgroundColor) {
         return {
             label: label,
             fill: false,
@@ -108,24 +112,24 @@ class IndicatorGroup extends Component {
     /**
      * @return {{labels: Array, datasets: Array}}
      */
-    static createChartData() {
+    createChartData() {
         let dataSets = [];
         let labels = [];
         let colorIndex = 0;
-        let availableColorCount = this.colors.length();
+        let availableColorCount = this.colors.length;
 
         this.props.indicatorGroup.forEach((indicator) => {
-            let color = colorIndex;
+            labels = indicator.data.labels;
+
+            let color = this.colors[colorIndex];
             dataSets.push(
                 this.createDataSet(
-                    indicator.title,
-                    indicator.dataSet,
+                    indicator.data.name,
+                    indicator.data.data_sets.value,
                     color.main,
                     color.background,
                 )
             );
-
-            labels.push(indicator.labels);
 
             colorIndex++;
             if (colorIndex >= availableColorCount) {

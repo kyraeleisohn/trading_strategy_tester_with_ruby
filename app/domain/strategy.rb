@@ -31,6 +31,10 @@ class Strategy
     act market_state
   end
 
+  def get_indicator_chart_id_list
+    @indicator_list.collect {|indicator| indicator.get_chart_id}
+  end
+
   protected
   def act(market_state)
 

@@ -12,4 +12,8 @@ class Indicator
   def value
     nil
   end
+
+  def get_chart_id
+    @chart.id
+  end
 end

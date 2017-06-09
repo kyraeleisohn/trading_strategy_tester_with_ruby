@@ -2,14 +2,14 @@ import {connect} from 'react-redux';
 import IndicatorGroup from '../components/IndicatorGroup';
 
 const mapStateToProps = (state, ownProps) => {
-    if (!state.indicatorListList.items.hasOwnProperty(ownProps.dataId)) {
-        return {
-            indicatorGroup: [],
-        };
-    }
+    let chartItems = Object.values(state.chartList.items);
+
+    let indicatorGroup = chartItems.filter(function(item) {
+        return ownProps.dataIdList.indexOf(item.id) !== -1;
+    });
 
     return {
-        indicatorGroup: state.indicatorListList.items[ownProps.dataId].data,
+        indicatorGroup: indicatorGroup,
     };
 };
 

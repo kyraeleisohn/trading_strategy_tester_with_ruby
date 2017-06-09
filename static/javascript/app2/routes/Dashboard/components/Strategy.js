@@ -15,8 +15,9 @@ class Strategy extends Component {
         strategy: PropTypes.shape({
             id: PropTypes.string.isRequired,
             name: PropTypes.string.isRequired,
+            chart_id: PropTypes.string.isRequired,
             parameter_list: PropTypes.string.isRequired,
-            indicator_list_id: PropTypes.string.isRequired,
+            indicator_chart_id_list: PropTypes.array.isRequired,
         }).isRequired,
     };
 
@@ -48,12 +49,15 @@ class Strategy extends Component {
                                 </tbody>
                             </table>
                         </div>
+                        <ActiveIndicatorGroup
+                            dataIdList={[this.props.strategy.chart_id]}
+                        />
                     </div>
                     <ActiveStatistic
                         dataId={this.props.strategy.id}
                     />
                     <ActiveIndicatorGroup
-                        dataId={this.props.strategy.indicator_list_id}
+                        dataIdList={this.props.strategy.indicator_chart_id_list}
                     />
                     <ActiveTradeList
                         dataId={this.props.strategy.id}

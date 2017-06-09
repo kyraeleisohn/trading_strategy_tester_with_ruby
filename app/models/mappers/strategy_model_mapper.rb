@@ -5,7 +5,7 @@ class StrategyModelMapper
       strategy.name,
       strategy.parameter_list,
       strategy.chart.id,
-      strategy.indicator_list.id
+      strategy.get_indicator_chart_id_list
     )
   end
 
